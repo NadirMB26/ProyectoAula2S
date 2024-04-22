@@ -1,6 +1,7 @@
 
 package packageclientes;
 
+import java.awt.List;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -15,11 +16,18 @@ public class Listado extends javax.swing.JPanel {
         modelo.addColumn("Direccion");
         modelo.addColumn("Correo");
         modelo.addColumn("Telefono");
+        
+        
         refrescarLista();
     }
      public void refrescarLista(){
+         while(modelo.getRowCount()>0){
+         modelo.removeRow(0);
+     }
+         
         tblusuarios.setModel(modelo);
     }
+
 
  
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

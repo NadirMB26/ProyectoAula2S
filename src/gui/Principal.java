@@ -3,6 +3,7 @@ package gui;
 
 
 import packageclientes.pantallaclientes;
+import packagemascotas.pantallamascotas;
 
 public class Principal extends javax.swing.JFrame {
     
@@ -40,6 +41,11 @@ public class Principal extends javax.swing.JFrame {
         btnGM.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnGM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/mascotas.png"))); // NOI18N
         btnGM.setText("Gestion Mascota");
+        btnGM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGMActionPerformed(evt);
+            }
+        });
 
         btnGTC.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnGTC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/cronograma.png"))); // NOI18N
@@ -112,6 +118,10 @@ public class Principal extends javax.swing.JFrame {
     private void btnGCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGCActionPerformed
     new pantallaclientes().setVisible(true);
     }//GEN-LAST:event_btnGCActionPerformed
+
+    private void btnGMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGMActionPerformed
+      new pantallamascotas().setVisible(true);
+    }//GEN-LAST:event_btnGMActionPerformed
 
     public static void main(String args[]) {
 

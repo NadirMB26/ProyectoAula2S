@@ -8,8 +8,6 @@ public class pantallaclientes extends javax.swing.JFrame {
    
     public pantallaclientes() {
         initComponents();
-        
-        
         this.setTitle("Gestion Clientes");
         this.setSize(720,570);
         this.setLocationRelativeTo(null);

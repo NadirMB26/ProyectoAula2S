@@ -4,15 +4,18 @@
  */
 package packageclientes;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author nadir
  */
 public class Registrar extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Registrar
-     */
+    ArrayList <Clientes> ListaCliente = new ArrayList<Clientes>();
     public Registrar() {
         initComponents();
     }
@@ -29,17 +32,17 @@ public class Registrar extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        etiCedulaRcliente = new javax.swing.JTextField();
+        txtNumeroDocumento = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        etiNombreRcliente = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        etiApellidosRcliente = new javax.swing.JTextField();
+        txtApellido = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        etiDireccionRcliente = new javax.swing.JTextField();
-        etiCorreoRcliente = new javax.swing.JTextField();
-        etiTelefonoRcliente = new javax.swing.JTextField();
+        txtDireccion = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
         btnVaciarRcliente = new javax.swing.JButton();
         btnGuardarRcliente = new javax.swing.JButton();
 
@@ -50,9 +53,9 @@ public class Registrar extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel2.setText("Cedula");
 
-        etiCedulaRcliente.addActionListener(new java.awt.event.ActionListener() {
+        txtNumeroDocumento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                etiCedulaRclienteActionPerformed(evt);
+                txtNumeroDocumentoActionPerformed(evt);
             }
         });
 
@@ -79,14 +82,16 @@ public class Registrar extends javax.swing.JPanel {
         });
 
         btnGuardarRcliente.setText("Guardar");
+        btnGuardarRcliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarRclienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,8 +101,8 @@ public class Registrar extends javax.swing.JPanel {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(etiNombreRcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(etiCedulaRcliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNumeroDocumento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
@@ -110,10 +115,11 @@ public class Registrar extends javax.swing.JPanel {
                                 .addComponent(btnVaciarRcliente)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                                 .addComponent(btnGuardarRcliente))
-                            .addComponent(etiApellidosRcliente)
-                            .addComponent(etiTelefonoRcliente)
-                            .addComponent(etiCorreoRcliente)
-                            .addComponent(etiDireccionRcliente))))
+                            .addComponent(txtApellido)
+                            .addComponent(txtTelefono)
+                            .addComponent(txtCorreo)
+                            .addComponent(txtDireccion)))
+                    .addComponent(jLabel1))
                 .addContainerGap(71, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -123,27 +129,27 @@ public class Registrar extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(etiCedulaRcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNumeroDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(etiNombreRcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(etiApellidosRcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(etiDireccionRcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(etiCorreoRcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(etiTelefonoRcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVaciarRcliente)
@@ -167,24 +173,43 @@ public class Registrar extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void etiCedulaRclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etiCedulaRclienteActionPerformed
+    private void txtNumeroDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroDocumentoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_etiCedulaRclienteActionPerformed
+    }//GEN-LAST:event_txtNumeroDocumentoActionPerformed
 
     private void btnVaciarRclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaciarRclienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVaciarRclienteActionPerformed
 
+    private void btnGuardarRclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarRclienteActionPerformed
+     Clientes cliente = new Clientes();
+    
+    // Asignar valores a las propiedades
+    cliente.ndocumento = Integer.parseInt(txtNumeroDocumento.getText());
+    cliente.apellido = txtApellido.getText();
+    cliente.nombre = txtNombre.getText();
+    cliente.direccion = txtDireccion.getText();
+    cliente.correo = txtCorreo.getText();
+    cliente.telefono =Integer.parseInt(txtTelefono.getText());
+    
+    // Guardar los datos en un archivo (puedes elegir el tipo de archivo según tus necesidades)
+    // Por ejemplo, guardar en un archivo de texto:
+    try {
+        FileWriter writer = new FileWriter("clientes.txt", true);
+        writer.write(cliente.ndocumento + "," + cliente.apellido + "," + cliente.nombre + "," +
+                     cliente.direccion + "," + cliente.correo + "," + cliente.telefono + "\n");
+        writer.close();
+        JOptionPane.showMessageDialog(null, "Datos guardados correctamente.");
+        System.out.println("Datos guardados correctamente.");
+    } catch (IOException ex) {
+        System.err.println("Error al guardar los datos: " + ex.getMessage());
+    }
+    }//GEN-LAST:event_btnGuardarRclienteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardarRcliente;
     private javax.swing.JButton btnVaciarRcliente;
-    private javax.swing.JTextField etiApellidosRcliente;
-    private javax.swing.JTextField etiCedulaRcliente;
-    private javax.swing.JTextField etiCorreoRcliente;
-    private javax.swing.JTextField etiDireccionRcliente;
-    private javax.swing.JTextField etiNombreRcliente;
-    private javax.swing.JTextField etiTelefonoRcliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -193,5 +218,11 @@ public class Registrar extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNumeroDocumento;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }
