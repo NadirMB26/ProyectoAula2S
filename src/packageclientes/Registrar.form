@@ -60,18 +60,18 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="btnVaciarRcliente" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="63" max="32767" attributes="0"/>
-                                  <Component id="btnGuardarRcliente" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="txtApellido" max="32767" attributes="0"/>
+                              <Component id="txtApellido" pref="207" max="32767" attributes="0"/>
                               <Component id="txtTelefono" max="32767" attributes="0"/>
                               <Component id="txtCorreo" max="32767" attributes="0"/>
                               <Component id="txtDireccion" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="btnVaciarRcliente" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="btnGuardarRcliente" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace pref="71" max="32767" attributes="0"/>
               </Group>
