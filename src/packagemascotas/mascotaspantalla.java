@@ -2,11 +2,11 @@
 package packagemascotas;
 
 import java.awt.BorderLayout;
-import packageclientes.Actualizar;
-import packageclientes.Consultar;
-import packageclientes.Eliminar;
-import packageclientes.Listado;
-import packageclientes.Registrar;
+import packagemascotas.ActualizarMsc;
+import packagemascotas.ConsultarMsc;
+import packagemascotas.EliminarMsc;
+import packagemascotas.ListadoM;
+import packagemascotas.RegistrarMsc;
 
 
 public class mascotaspantalla extends javax.swing.JPanel {
@@ -46,14 +46,14 @@ public class mascotaspantalla extends javax.swing.JPanel {
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 710, Short.MAX_VALUE)
+            .addGap(0, 730, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 360, Short.MAX_VALUE)
+            .addGap(0, 380, Short.MAX_VALUE)
         );
 
-        add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 710, 360));
+        add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 730, 380));
 
         btnRegistrar.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         btnRegistrar.setText("Registrar");

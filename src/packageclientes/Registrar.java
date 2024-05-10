@@ -179,7 +179,13 @@ public class Registrar extends javax.swing.JPanel {
     }//GEN-LAST:event_txtNumeroDocumentoActionPerformed
 
     private void btnVaciarRclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaciarRclienteActionPerformed
-        // TODO add your handling code here:
+
+        txtNombre.setText("");
+        txtCorreo.setText("");
+        txtTelefono.setText("");
+        txtDireccion.setText("");
+        txtApellido.setText("");
+        txtNumeroDocumento.setText("");
     }//GEN-LAST:event_btnVaciarRclienteActionPerformed
 
     private void btnGuardarRclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarRclienteActionPerformed
@@ -240,12 +246,23 @@ public class Registrar extends javax.swing.JPanel {
     // Guardar los datos en un archivo (puedes elegir el tipo de archivo según tus necesidades)
     // Por ejemplo, guardar en un archivo de texto:
     try {
-        FileWriter writer = new FileWriter("clientes.txt", true);
-        writer.write(cliente.ndocumento + "," + cliente.apellido + "," + cliente.nombre + "," +
-                     cliente.direccion + "," + cliente.correo + "," + cliente.telefono + "\n");
-        writer.close();
-        JOptionPane.showMessageDialog(null, "Datos guardados correctamente.");
-        System.out.println("Datos guardados correctamente.");
+        
+        if (!Nombre.isEmpty() && !apellido.isEmpty() && !cedula.isEmpty() &&
+            !correo.isEmpty() && !telefono.isEmpty() && !direccion.isEmpty()) {
+
+            // Escribe los datos en el archivo "clientes.txt"
+            FileWriter writer = new FileWriter("clientes.txt", true);
+            writer.write(cedula + "," + apellido + "," + Nombre + "," +
+                direccion + "," + correo + "," + telefono + "\n");
+            writer.close();
+
+            JOptionPane.showMessageDialog(null, "Datos guardados correctamente.");
+            System.out.println("Datos guardados correctamente.");
+        } else {
+           JOptionPane.showMessageDialog(null, "Por favor, completa todos los campos.");
+           System.out.println("Por favor, completa todos los campos.");
+        }
+        
     } catch (IOException ex) {
         System.err.println("Error al guardar los datos: " + ex.getMessage());
     }
