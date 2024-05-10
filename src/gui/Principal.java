@@ -4,7 +4,8 @@ package gui;
 
 import java.awt.BorderLayout;
 import packageclientes.Registrar;
-import packagemascotas.pantallamascotas;
+import packagemascotas.mascotaspantalla;
+
 
 public class Principal extends javax.swing.JFrame {
     
@@ -141,7 +142,13 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGCActionPerformed
 
     private void btnGMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGMActionPerformed
-      new pantallamascotas().setVisible(true);
+        mascotaspantalla p1=new mascotaspantalla();
+        p1.setSize(980,520);
+        p1.setLocation(0, 0);
+        contentp.removeAll();
+        contentp.add(p1,BorderLayout.CENTER);
+        contentp.revalidate();
+        contentp.repaint();
     }//GEN-LAST:event_btnGMActionPerformed
 
     public static void main(String args[]) {

@@ -4,6 +4,7 @@
  */
 package packageclientes;
 
+import java.awt.Color;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -178,29 +179,90 @@ public class Registrar extends javax.swing.JPanel {
     }//GEN-LAST:event_txtNumeroDocumentoActionPerformed
 
     private void btnVaciarRclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaciarRclienteActionPerformed
-        // TODO add your handling code here:
+
+        txtNombre.setText("");
+        txtCorreo.setText("");
+        txtTelefono.setText("");
+        txtDireccion.setText("");
+        txtApellido.setText("");
+        txtNumeroDocumento.setText("");
     }//GEN-LAST:event_btnVaciarRclienteActionPerformed
 
     private void btnGuardarRclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarRclienteActionPerformed
-     Clientes cliente = new Clientes();
-    
-    // Asignar valores a las propiedades
-    cliente.ndocumento = Integer.parseInt(txtNumeroDocumento.getText());
-    cliente.apellido = txtApellido.getText();
-    cliente.nombre = txtNombre.getText();
-    cliente.direccion = txtDireccion.getText();
-    cliente.correo = txtCorreo.getText();
-    cliente.telefono =Integer.parseInt(txtTelefono.getText());
+       Clientes cliente = new Clientes();
+       int validacion = 0;
+        String Nombre,cedula,correo,telefono,direccion,apellido;
+        Nombre = txtNombre.getText().trim();
+        correo = txtCorreo.getText().trim();
+        telefono = txtTelefono.getText().trim();
+        direccion = txtDireccion.getText().trim();
+        apellido = txtApellido.getText().trim();
+        cedula = txtNumeroDocumento.getText().trim();
+        
+            if (Nombre.equals("")){
+               txtNombre.setBackground(Color.red);
+               validacion++;         
+            }
+            if (apellido.equals("")){
+               txtApellido.setBackground(Color.red);
+               validacion++;         
+            }
+            
+            if (cedula.equals("")){
+               txtNumeroDocumento.setBackground(Color.red);
+               validacion++;         
+            }
+            
+            
+            if (correo.equals("")){
+               txtCorreo.setBackground(Color.red);
+               validacion++;
+            }   
+            
+            if (telefono.equals("")){
+               txtTelefono.setBackground(Color.red);
+               validacion++;
+            }
+            
+            if (direccion.equals("")){
+               txtDireccion.setBackground(Color.red);
+               validacion++;   
+            }
+            
+            if (validacion != 0){
+                JOptionPane.showMessageDialog(null, "Se deben completar todos los campos");
+            } else {
+                txtNombre.setBackground(Color.green);
+                txtNumeroDocumento.setBackground(Color.green);
+                txtCorreo.setBackground(Color.green);
+                txtTelefono.setBackground(Color.green);
+                txtDireccion.setBackground(Color.green);
+                txtApellido.setBackground(Color.green);
+                JOptionPane.showMessageDialog(null, "Registro Exitoso");
+                
+                
+            }
     
     // Guardar los datos en un archivo (puedes elegir el tipo de archivo según tus necesidades)
     // Por ejemplo, guardar en un archivo de texto:
     try {
-        FileWriter writer = new FileWriter("clientes.txt", true);
-        writer.write(cliente.ndocumento + "," + cliente.apellido + "," + cliente.nombre + "," +
-                     cliente.direccion + "," + cliente.correo + "," + cliente.telefono + "\n");
-        writer.close();
-        JOptionPane.showMessageDialog(null, "Datos guardados correctamente.");
-        System.out.println("Datos guardados correctamente.");
+        
+        if (!Nombre.isEmpty() && !apellido.isEmpty() && !cedula.isEmpty() &&
+            !correo.isEmpty() && !telefono.isEmpty() && !direccion.isEmpty()) {
+
+            // Escribe los datos en el archivo "clientes.txt"
+            FileWriter writer = new FileWriter("clientes.txt", true);
+            writer.write(cedula + "," + apellido + "," + Nombre + "," +
+                direccion + "," + correo + "," + telefono + "\n");
+            writer.close();
+
+            JOptionPane.showMessageDialog(null, "Datos guardados correctamente.");
+            System.out.println("Datos guardados correctamente.");
+        } else {
+           JOptionPane.showMessageDialog(null, "Por favor, completa todos los campos.");
+           System.out.println("Por favor, completa todos los campos.");
+        }
+        
     } catch (IOException ex) {
         System.err.println("Error al guardar los datos: " + ex.getMessage());
     }
