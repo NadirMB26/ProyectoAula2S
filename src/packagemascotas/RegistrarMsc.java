@@ -1,14 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-package packagemascotas;
 
-/**
- *
- * @author USER
- */
+package packagemascotas;
+import packagemascotas.Mascotas;
+
+import java.awt.Color;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 public class RegistrarMsc extends javax.swing.JPanel {
+    
+    ArrayList <Mascotas> ListaMascotas = new ArrayList<Mascotas>();
 
     /**
      * Creates new form RegistrarMsc
@@ -31,20 +33,20 @@ public class RegistrarMsc extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         etiCedula = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        etiNombreRcliente = new javax.swing.JTextField();
+        etiNombreMasc = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        btnVaciarRcliente = new javax.swing.JButton();
-        btnGuardarRcliente = new javax.swing.JButton();
+        btnVaciarMasct = new javax.swing.JButton();
+        btnGuardarMasct = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        etiNombreRcliente1 = new javax.swing.JTextField();
+        etiMascID = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        etiNombreRcliente2 = new javax.swing.JTextField();
-        etiNombreRcliente3 = new javax.swing.JTextField();
+        etiColor = new javax.swing.JTextField();
+        etiTsangre = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        lstEspecie = new javax.swing.JComboBox<>();
+        lstTvida = new javax.swing.JComboBox<>();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/packageclientes/registrar.png"))); // NOI18N
@@ -65,26 +67,26 @@ public class RegistrarMsc extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel4.setText("Especie");
 
-        btnVaciarRcliente.setText("Vaciar");
-        btnVaciarRcliente.addActionListener(new java.awt.event.ActionListener() {
+        btnVaciarMasct.setText("Vaciar");
+        btnVaciarMasct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVaciarRclienteActionPerformed(evt);
+                btnVaciarMasctActionPerformed(evt);
             }
         });
 
-        btnGuardarRcliente.setText("Guardar");
-        btnGuardarRcliente.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardarMasct.setText("Guardar");
+        btnGuardarMasct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarRclienteActionPerformed(evt);
+                btnGuardarMasctActionPerformed(evt);
             }
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel5.setText("Id Mascota");
 
-        etiNombreRcliente1.addActionListener(new java.awt.event.ActionListener() {
+        etiMascID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                etiNombreRcliente1ActionPerformed(evt);
+                etiMascIDActionPerformed(evt);
             }
         });
 
@@ -94,18 +96,18 @@ public class RegistrarMsc extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel8.setText("T de sangre");
 
-        etiNombreRcliente2.addActionListener(new java.awt.event.ActionListener() {
+        etiColor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                etiNombreRcliente2ActionPerformed(evt);
+                etiColorActionPerformed(evt);
             }
         });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel9.setText("Tiempo de vida");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "         ", "Perro", "Gato", "Conejo", "Loro" }));
+        lstEspecie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "         ", "Perro", "Gato", "Conejo", "Loro" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "               ", "(...) meses", "1 año(s)", "2 años(s)", "3 años(s)" }));
+        lstTvida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "               ", "(...) meses", "1 año(s)", "2 años(s)", "3 años(s)" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -123,11 +125,11 @@ public class RegistrarMsc extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(etiNombreRcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(etiNombreMasc, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(43, 43, 43)
                                 .addComponent(jLabel8)
                                 .addGap(18, 18, 18)
-                                .addComponent(etiNombreRcliente3))
+                                .addComponent(etiTsangre))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -135,27 +137,27 @@ public class RegistrarMsc extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(etiNombreRcliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(etiMascID, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(btnVaciarRcliente)
+                                        .addComponent(btnVaciarMasct)
                                         .addGap(41, 41, 41)
-                                        .addComponent(btnGuardarRcliente))
+                                        .addComponent(btnGuardarMasct))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                         .addGap(4, 4, 4)
                                         .addComponent(jLabel7)
                                         .addGap(18, 18, 18)
-                                        .addComponent(etiNombreRcliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(etiColor, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(30, 30, 30)
                                         .addComponent(jLabel9)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(lstTvida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(76, 76, 76)
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lstEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -167,29 +169,29 @@ public class RegistrarMsc extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(etiCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(etiNombreRcliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(etiMascID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etiNombreRcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiNombreMasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel8)
-                    .addComponent(etiNombreRcliente3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(etiTsangre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(etiNombreRcliente2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lstTvida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lstEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVaciarRcliente)
-                    .addComponent(btnGuardarRcliente))
+                    .addComponent(btnVaciarMasct)
+                    .addComponent(btnGuardarMasct))
                 .addGap(36, 36, 36))
         );
 
@@ -209,35 +211,123 @@ public class RegistrarMsc extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_etiCedulaActionPerformed
 
-    private void btnVaciarRclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaciarRclienteActionPerformed
+    private void btnVaciarMasctActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaciarMasctActionPerformed
+        etiCedula.setText("");
+        etiNombreMasc.setText("");
+        etiMascID.setText("");
+        etiTsangre.setText("");
+        etiColor.setText("");
+        //lstTvida.getSelectedIndex();
+        //lstEspecie.getSelectedIndex();
+    }//GEN-LAST:event_btnVaciarMasctActionPerformed
+
+    private void btnGuardarMasctActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarMasctActionPerformed
+        Mascotas mascota= new Mascotas(); 
+        int validacion = 0;
+        String nombreM,CCliente,IDmasc,color,Tsangre,apellido;
+        Object tvidaSeleccionado,especieSeleccionada;
+        
+        nombreM = etiNombreMasc.getText().trim();
+        color = etiColor.getText().trim();
+        Tsangre =etiTsangre.getText().trim();
+        IDmasc = etiMascID.getText();
+        tvidaSeleccionado = lstTvida.getSelectedItem();
+        especieSeleccionada = lstEspecie.getSelectedItem();
+            if (nombreM.equals("")){
+               etiNombreMasc.setBackground(Color.red);
+               validacion++;         
+            }
+            
+            /*if (CCliente.equals("")){
+               etiCedula.setBackground(Color.red);
+               validacion++;         
+            }/*/
+            
+            
+            if (color.equals("")){
+               etiColor.setBackground(Color.red);
+               validacion++;
+            }   
+            
+            if (Tsangre.equals("")){
+               etiTsangre.setBackground(Color.red);
+               validacion++;
+            }
+            
+            if (IDmasc.equals("")){
+               etiMascID.setBackground(Color.red);
+               validacion++;   
+            }
+            
+            if (tvidaSeleccionado == null || especieSeleccionada == null) {
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar un valor para Tiempo de vida y Especie.");
+                    return;
+            }
+            
+            
+            if (validacion != 0){
+                JOptionPane.showMessageDialog(null, "Se deben completar todos los campos");
+            } else {
+                etiNombreMasc.setBackground(Color.green);
+                etiCedula.setBackground(Color.green);
+                etiColor.setBackground(Color.green);
+                etiTsangre.setBackground(Color.green);
+                etiMascID.setBackground(Color.green);
+                JOptionPane.showMessageDialog(null, "Registro Exitoso");
+                
+                
+            }
+    
+    // Guardar los datos en un archivo (puedes elegir el tipo de archivo según tus necesidades)
+    // Por ejemplo, guardar en un archivo de texto:
+    try {
+        
+        if (!nombreM.isEmpty() && !IDmasc.isEmpty() &&
+            !color.isEmpty() && !Tsangre.isEmpty() && !especieSeleccionada.equals(null) && !tvidaSeleccionado.equals(null)) {
+
+            // Escribe los datos en el archivo "clientes.txt"
+            FileWriter writer = new FileWriter("mascotas.txt", true);
+            writer.write(IDmasc + "," + nombreM + "," +
+                color + "," + Tsangre + "," + tvidaSeleccionado + "," + especieSeleccionada +"\n");
+            writer.close();
+
+            JOptionPane.showMessageDialog(null, "Datos guardados correctamente.");
+            System.out.println("Datos guardados correctamente.");
+        } else {
+           JOptionPane.showMessageDialog(null, "Por favor, completa todos los campos.");
+           System.out.println("Por favor, completa todos los campos.");
+        }
+        
+    } catch (IOException ex) {
+        System.err.println("Error al guardar los datos: " + ex.getMessage());
+    }      
+
+    }//GEN-LAST:event_btnGuardarMasctActionPerformed
+
+    private void etiColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etiColorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnVaciarRclienteActionPerformed
+    }//GEN-LAST:event_etiColorActionPerformed
 
-    private void btnGuardarRclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarRclienteActionPerformed
-   
-      
-
-    }//GEN-LAST:event_btnGuardarRclienteActionPerformed
-
-    private void etiNombreRcliente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etiNombreRcliente2ActionPerformed
+    private void etiMascIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etiMascIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_etiNombreRcliente2ActionPerformed
+    }//GEN-LAST:event_etiMascIDActionPerformed
+    public static void main(String args[]) {
 
-    private void etiNombreRcliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etiNombreRcliente1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_etiNombreRcliente1ActionPerformed
-
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new RegistrarMsc().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGuardarRcliente;
-    private javax.swing.JButton btnVaciarRcliente;
+    private javax.swing.JButton btnGuardarMasct;
+    private javax.swing.JButton btnVaciarMasct;
     private javax.swing.JTextField etiCedula;
-    private javax.swing.JTextField etiNombreRcliente;
-    private javax.swing.JTextField etiNombreRcliente1;
-    private javax.swing.JTextField etiNombreRcliente2;
-    private javax.swing.JTextField etiNombreRcliente3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JTextField etiColor;
+    private javax.swing.JTextField etiMascID;
+    private javax.swing.JTextField etiNombreMasc;
+    private javax.swing.JTextField etiTsangre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -248,5 +338,7 @@ public class RegistrarMsc extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox<String> lstEspecie;
+    private javax.swing.JComboBox<String> lstTvida;
     // End of variables declaration//GEN-END:variables
 }
