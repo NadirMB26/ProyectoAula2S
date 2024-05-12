@@ -186,6 +186,7 @@ public class Registrar extends javax.swing.JPanel {
         txtDireccion.setText("");
         txtApellido.setText("");
         txtNumeroDocumento.setText("");
+        setWhite();
     }//GEN-LAST:event_btnVaciarRclienteActionPerformed
 
     private void btnGuardarRclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarRclienteActionPerformed
@@ -267,7 +268,14 @@ public class Registrar extends javax.swing.JPanel {
         System.err.println("Error al guardar los datos: " + ex.getMessage());
     }
     }//GEN-LAST:event_btnGuardarRclienteActionPerformed
-
+    public void setWhite(){
+        txtNombre.setBackground(Color.white);
+        txtNumeroDocumento.setBackground(Color.white);
+        txtCorreo.setBackground(Color.white);
+        txtTelefono.setBackground(Color.white);
+        txtDireccion.setBackground(Color.white);
+        txtApellido.setBackground(Color.white);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardarRcliente;

@@ -217,8 +217,9 @@ public class RegistrarMsc extends javax.swing.JPanel {
         etiMascID.setText("");
         etiTsangre.setText("");
         etiColor.setText("");
-        //lstTvida.getSelectedIndex();
-        //lstEspecie.getSelectedIndex();
+        lstTvida.setSelectedIndex(0);
+        lstEspecie.setSelectedIndex(0);
+        setWhite();
     }//GEN-LAST:event_btnVaciarMasctActionPerformed
 
     private void btnGuardarMasctActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarMasctActionPerformed
@@ -311,13 +312,12 @@ public class RegistrarMsc extends javax.swing.JPanel {
     private void etiMascIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etiMascIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_etiMascIDActionPerformed
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistrarMsc().setVisible(true);
-            }
-        });
+     public void setWhite() {
+        etiNombreMasc.setBackground(Color.WHITE);
+        etiCedula.setBackground(Color.WHITE);
+        etiColor.setBackground(Color.WHITE);
+        etiTsangre.setBackground(Color.WHITE);
+        etiMascID.setBackground(Color.WHITE);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

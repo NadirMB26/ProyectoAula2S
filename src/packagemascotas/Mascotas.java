@@ -1,6 +1,9 @@
 
 package packagemascotas;
 
+import java.awt.Color;
+import javax.swing.JLabel;
+
 public class Mascotas {
     
     public packageclientes.Clientes cliente;
