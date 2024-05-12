@@ -6,19 +6,21 @@ import javax.swing.table.DefaultTableModel;
 
 public class ListadoM extends javax.swing.JPanel {
 
+   
    DefaultTableModel modelo=new DefaultTableModel();
     public ListadoM() {
         initComponents();
-        modelo.addColumn("Cedula");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Apellidos");
-        modelo.addColumn("Direccion");
-        modelo.addColumn("Correo");
-        modelo.addColumn("Telefono");
+        modelo.addColumn("CCliente");
+        modelo.addColumn("NombreMsc");
+        modelo.addColumn("Color");
+        modelo.addColumn("Especie");
+        modelo.addColumn("Tsangre");
+        modelo.addColumn("Tvida");
         refrescarLista();
+        //tblMascotas.setModel();
     }
      public void refrescarLista(){
-        tblusuarios.setModel(modelo);
+ 
     }
 
  
@@ -27,13 +29,13 @@ public class ListadoM extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblusuarios = new javax.swing.JTable();
+        tblMascotas = new javax.swing.JTable();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/packageclientes/lista.png"))); // NOI18N
         jLabel1.setText("Listado Mascotas");
 
-        tblusuarios.setModel(new javax.swing.table.DefaultTableModel(
+        tblMascotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -44,7 +46,7 @@ public class ListadoM extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblusuarios);
+        jScrollPane1.setViewportView(tblMascotas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -72,6 +74,6 @@ public class ListadoM extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblusuarios;
+    private javax.swing.JTable tblMascotas;
     // End of variables declaration//GEN-END:variables
 }

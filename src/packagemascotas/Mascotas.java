@@ -1,85 +1,83 @@
 
-package packageMascotas;
+package packagemascotas;
 
+import java.awt.Color;
+import javax.swing.JLabel;
 
 public class Mascotas {
-    int ndocumento; 
-    String apellido;
-    String nombre;
-    String direccion;
-    String correo;
-    int telefono;
     
-      public Mascotas() {
+    public packageclientes.Clientes cliente;
+    
+    int IDmascota;
+    String nombreM;
+    String color;
+    String Tsangre;
+    String Tvida;
+    String especie;
+    
+    public Mascotas() {
+        
+    }
+    
+    public Mascotas(int IDmascota, String nombreM, String color, String Tsangre,String Tvida, String especie) {
+        this.IDmascota = IDmascota;
+        this.nombreM = nombreM;
+        this.color = color;
+        this.Tsangre = Tsangre;
+        this.especie = especie;
     }
 
-    public Mascotas(int ndocumento, String apellido, String nombre, String direccion, String correo, int telefono) {
-        this.ndocumento = ndocumento;
-        this.apellido = apellido;
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.correo = correo;
-        this.telefono = telefono;
+    public int getNdocument() {
+        return getNdocument();
     }
 
-    public int getNdocumento() {
-        return ndocumento;
+    public void setNdocumento(int Ndocumento) {
     }
-
-    public void setNdocumento(int ndocumento) {
-        this.ndocumento = ndocumento;
+    
+    public int getIDmascota() {
+        return IDmascota;
     }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    
+    public void setIDmascota(int IDmascota) {
+        this.IDmascota = IDmascota;
     }
 
     public String getNombre() {
-        return nombre;
+        return nombreM;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombreM = nombre;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getColor() {
+        return color;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setColor(String color) {
+        this.color = color;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getTsangre() {
+        return Tsangre;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setTsangre(String Tsangre) {
+        this.Tsangre = Tsangre;
     }
 
-    public int getTelefono() {
-        return telefono;
+    public String getEspecie() {
+        return especie;
     }
 
-    public void setTelefono(int telefono) {
-        this.telefono = telefono;
+    public void setEspecie(String especie) {
+        this.especie = especie;
     }
 
     @Override
     public String toString() {
-        return "Clientes{" + "ndocumento=" + ndocumento + ", apellido=" + apellido + ", nombre=" + nombre + ", direccion=" + direccion + ", correo=" + correo + ", telefono=" + telefono + '}';
+        return "Mascotas{" + "Ndocument=" + ", nombreM=" + nombreM + ", color=" + color + ", Tsangre=" + Tsangre + ", especie=" + especie + '}';
     }
-    
-    
-    
-    
-
   
-    
     
 }
