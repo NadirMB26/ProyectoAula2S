@@ -2,27 +2,19 @@
 package packagemascotas;
 
 import javax.swing.table.DefaultTableModel;
+import metodos.Metodos;
 
 
 public class ListadoM extends javax.swing.JPanel {
 
+   Mascotas mascota = new Mascotas();
+   Metodos metodos = new Metodos();
    
-   DefaultTableModel modelo=new DefaultTableModel();
+   DefaultTableModel Mascots;
     public ListadoM() {
         initComponents();
-        modelo.addColumn("CCliente");
-        modelo.addColumn("NombreMsc");
-        modelo.addColumn("Color");
-        modelo.addColumn("Especie");
-        modelo.addColumn("Tsangre");
-        modelo.addColumn("Tvida");
-        refrescarLista();
-        //tblMascotas.setModel();
+        tblMascotas.setModel(metodos.ListMasc());
     }
-     public void refrescarLista(){
- 
-    }
-
  
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
