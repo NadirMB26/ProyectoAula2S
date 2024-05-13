@@ -5,17 +5,17 @@ import java.util.ArrayList;
 
 
 public class Clientes {
-    float ndocumento; 
+    String ndocumento; 
     String apellido;
     String nombre;
     String direccion;
     String correo;
-    float telefono;
+    String telefono;
     
       public Clientes() {
     }
 
-    public Clientes(int ndocumento, String apellido, String nombre, String direccion, String correo, int telefono) {
+    public Clientes(String ndocumento, String apellido, String nombre, String direccion, String correo, String telefono) {
         this.ndocumento = ndocumento;
         this.apellido = apellido;
         this.nombre = nombre;
@@ -24,11 +24,11 @@ public class Clientes {
         this.telefono = telefono;
     }
 
-    public float getNdocumento() {
+    public String getNdocumento() {
         return ndocumento;
     }
 
-    public void setNdocumento(float ndocumento) {
+    public void setNdocumento(String ndocumento) {
         this.ndocumento = ndocumento;
     }
 
@@ -64,11 +64,11 @@ public class Clientes {
         this.correo = correo;
     }
 
-    public float getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(float telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

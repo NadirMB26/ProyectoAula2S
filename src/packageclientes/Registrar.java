@@ -3,10 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package packageclientes;
+import java.awt.Rectangle;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.PrintWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.*;
 import javax.swing.JOptionPane;
 
 
@@ -181,19 +187,12 @@ public class Registrar extends javax.swing.JPanel {
 
     private void btnGuardarRclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarRclienteActionPerformed
      Clientes cliente = new Clientes();
-    cliente.ndocumento = Integer.parseInt(txtNumeroDocumento.getText());
+    cliente.ndocumento =  txtNumeroDocumento.getText();
     cliente.apellido = txtApellido.getText().trim();
     cliente.nombre = txtNombre.getText().trim();
     cliente.direccion = txtDireccion.getText().trim();
     cliente.correo = txtCorreo.getText().trim();
-    cliente.telefono =Integer.parseInt(txtTelefono.getText());
-    
-   String nd = txtNumeroDocumento.getText().trim();
-   String ap = txtApellido.getText().trim();
-   String nb = txtNombre.getText().trim();
-    String dr = txtDireccion.getText().trim();
-   String co = txtCorreo.getText().trim();
-    String tl = txtTelefono.getText().trim();
+    cliente.telefono =txtTelefono.getText();
     // Guardar los datos en un archivo (puedes elegir el tipo de archivo según tus necesidades)
     // Por ejemplo, guardar en un archivo de texto:
    try {
@@ -226,7 +225,10 @@ public class Registrar extends javax.swing.JPanel {
     
     }//GEN-LAST:event_btnGuardarRclienteActionPerformed
 
-    
+public void vcedula(String cc){
+ String searchTerm = txtNumeroDocumento.getText().trim();
+
+}
     
     
     private void txtNumeroDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroDocumentoKeyTyped
