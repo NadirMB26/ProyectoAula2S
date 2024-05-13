@@ -30,10 +30,7 @@ public class Mascotas {
         this.Tvida = (String) Tvida;
     }
     
-    public void setCliente(Clientes cliente) {
-        this.cliente = cliente;
-        this.Ndocument = cliente.ndocumento;
-    }
+
 
     public int getNdocument() {
         return Ndocument;

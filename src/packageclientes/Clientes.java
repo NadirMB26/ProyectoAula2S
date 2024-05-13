@@ -1,14 +1,16 @@
 
 package packageclientes;
 
+import java.util.ArrayList;
+
 
 public class Clientes {
-    public int ndocumento; 
+    float ndocumento; 
     String apellido;
     String nombre;
     String direccion;
     String correo;
-    int telefono;
+    float telefono;
     
       public Clientes() {
     }
@@ -22,11 +24,11 @@ public class Clientes {
         this.telefono = telefono;
     }
 
-    public int getNdocumento() {
+    public float getNdocumento() {
         return ndocumento;
     }
 
-    public void setNdocumento(int ndocumento) {
+    public void setNdocumento(float ndocumento) {
         this.ndocumento = ndocumento;
     }
 
@@ -62,11 +64,11 @@ public class Clientes {
         this.correo = correo;
     }
 
-    public int getTelefono() {
+    public float getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(float telefono) {
         this.telefono = telefono;
     }
 
@@ -75,6 +77,20 @@ public class Clientes {
         return "Clientes{" + "ndocumento=" + ndocumento + ", apellido=" + apellido + ", nombre=" + nombre + ", direccion=" + direccion + ", correo=" + correo + ", telefono=" + telefono + '}';
     }
     
+    public static ArrayList<Clientes> clienteBD = new ArrayList<>();
+
+    public static ArrayList<Clientes> getCliente() {
+        return clienteBD;
+    }
+
+    public static void setCliente(ArrayList<Clientes> cliente) {
+        Clientes.clienteBD = cliente;
+    }
+    
+    
+    
+
+  
     
     
 }
