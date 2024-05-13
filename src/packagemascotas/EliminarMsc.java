@@ -196,7 +196,7 @@ public class EliminarMsc extends javax.swing.JPanel {
             }
             bw.close();         
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+
         }
         
         JOptionPane.showMessageDialog(null, "Mascota eliminada con exito!!");
