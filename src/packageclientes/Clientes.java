@@ -3,7 +3,7 @@ package packageclientes;
 
 
 public class Clientes {
-    int ndocumento; 
+    public int ndocumento; 
     String apellido;
     String nombre;
     String direccion;

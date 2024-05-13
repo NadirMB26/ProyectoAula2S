@@ -3,11 +3,13 @@ package packagemascotas;
 
 import java.awt.Color;
 import javax.swing.JLabel;
+import packageclientes.Clientes;
 
 public class Mascotas {
     
-    public packageclientes.Clientes cliente;
+    Clientes cliente;
     
+    int Ndocument;
     int IDmascota;
     String nombreM;
     String color;
@@ -19,19 +21,26 @@ public class Mascotas {
         
     }
     
-    public Mascotas(int IDmascota, String nombreM, String color, String Tsangre,String Tvida, String especie) {
+    public Mascotas(int Ndocument, int IDmascota, String nombreM, String color, String Tsangre,Object Tvida, Object especie) {
         this.IDmascota = IDmascota;
         this.nombreM = nombreM;
         this.color = color;
         this.Tsangre = Tsangre;
-        this.especie = especie;
+        this.especie = (String) especie;
+        this.Tvida = (String) Tvida;
+    }
+    
+    public void setCliente(Clientes cliente) {
+        this.cliente = cliente;
+        this.Ndocument = cliente.ndocumento;
     }
 
     public int getNdocument() {
-        return getNdocument();
+        return Ndocument;
     }
 
     public void setNdocumento(int Ndocumento) {
+        this.Ndocument = Ndocument;
     }
     
     public int getIDmascota() {
@@ -42,12 +51,12 @@ public class Mascotas {
         this.IDmascota = IDmascota;
     }
 
-    public String getNombre() {
+    public String getnombreM() {
         return nombreM;
     }
 
-    public void setNombre(String nombre) {
-        this.nombreM = nombre;
+    public void setnombreM(String nombreM) {
+        this.nombreM = nombreM;
     }
 
     public String getColor() {
@@ -64,6 +73,14 @@ public class Mascotas {
 
     public void setTsangre(String Tsangre) {
         this.Tsangre = Tsangre;
+    }
+    
+    public String getTvida() {
+        return Tvida;
+    }
+    
+    public void setTvida(String Tvida) {
+        this.Tvida = Tvida;
     }
 
     public String getEspecie() {
