@@ -2,6 +2,9 @@
 package packageclientes;
 
 import java.awt.List;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -20,12 +23,20 @@ public class Listado extends javax.swing.JPanel {
         
         refrescarLista();
     }
-     public void refrescarLista(){
-         while(modelo.getRowCount()>0){
-         modelo.removeRow(0);
-     }
-         
+   public void refrescarLista(){
         tblusuarios.setModel(modelo);
+         File file = new File("clientes.csv");
+        try {
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] parts = line.split(",");
+               modelo.addRow(parts);
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 
