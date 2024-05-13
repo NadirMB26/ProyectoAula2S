@@ -285,7 +285,7 @@ public class RegistrarMsc extends javax.swing.JPanel {
             !color.isEmpty() && !Tsangre.isEmpty() && !Tvida.isEmpty() && !especie.isEmpty()) {
 
             // Escribe los datos en el archivo "clientes.txt"
-            FileWriter writer = new FileWriter("mascotas.txt", true);
+            FileWriter writer = new FileWriter("mascotas.csv", true);
             BufferedWriter bw = new BufferedWriter(writer);
             PrintWriter pw = new PrintWriter(bw);
             pw.print(CCliente);

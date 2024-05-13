@@ -247,7 +247,7 @@ public class ActualizarMsc extends javax.swing.JPanel {
             tblUpdMas.setValueAt(datos[k],filas,k);
         }
         try{
-            String fileM = "mascotas.txt";
+            String fileM = "mascotas.csv";
             BufferedWriter bw = new BufferedWriter(new FileWriter(fileM));
             for(int i=0;i<tblUpdMas.getColumnCount();i++){
                 for(int j=0;j<tblUpdMas.getColumnCount();j++){

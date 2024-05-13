@@ -33,7 +33,7 @@ public class Metodos {
         DefaultTableModel Mascots = new DefaultTableModel(pets,0);
         
         try{
-            FileReader read = new FileReader("mascotas.txt");
+            FileReader read = new FileReader("mascotas.csv");
             BufferedReader br = new BufferedReader(read);
             String d;
             while((d=br.readLine())!=null){

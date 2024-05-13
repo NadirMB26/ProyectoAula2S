@@ -163,7 +163,7 @@ public class EliminarMsc extends javax.swing.JPanel {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String CCliente = jTextField1.getText();
         
-        String archivoMascotas = "mascotas.txt"; // Reemplaza con la ruta real de tu archivo
+        String archivoMascotas = "mascotas.csv"; // Reemplaza con la ruta real de tu archivo
 
         try {
             ArrayList<Mascotas> mascotas = metodo.buscarMascotas(CCliente, archivoMascotas);
