@@ -7,6 +7,7 @@ package packageclientes;
 import java.awt.Color;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -243,10 +244,26 @@ public class Registrar extends javax.swing.JPanel {
                 
                 
             }
+    try {
+    PrintWriter writer = new PrintWriter(new FileWriter("clientes.csv", true));
+    // Escribir los datos en formato CSV
+    writer.printf("%s,%s,%s,%s,%s,%s%n", 
+                   cliente.ndocumento, 
+                   cliente.nombre, 
+                   cliente.apellido, 
+                   cliente.direccion, 
+                   cliente.correo, 
+                   cliente.telefono);
+    writer.close();
+    JOptionPane.showMessageDialog(null, "Datos guardados correctamente.");
+    System.out.println("Datos guardados correctamente.");
+} catch (IOException ex) {
+    System.err.println("Error al guardar los datos: " + ex.getMessage());
+}        
     
     // Guardar los datos en un archivo (puedes elegir el tipo de archivo según tus necesidades)
     // Por ejemplo, guardar en un archivo de texto:
-    try {
+    /*try {
         
         if (!Nombre.isEmpty() && !apellido.isEmpty() && !cedula.isEmpty() &&
             !correo.isEmpty() && !telefono.isEmpty() && !direccion.isEmpty()) {
@@ -266,7 +283,7 @@ public class Registrar extends javax.swing.JPanel {
         
     } catch (IOException ex) {
         System.err.println("Error al guardar los datos: " + ex.getMessage());
-    }
+    }/**/
     }//GEN-LAST:event_btnGuardarRclienteActionPerformed
     public void setWhite(){
         txtNombre.setBackground(Color.white);
@@ -275,6 +292,25 @@ public class Registrar extends javax.swing.JPanel {
         txtTelefono.setBackground(Color.white);
         txtDireccion.setBackground(Color.white);
         txtApellido.setBackground(Color.white);
+    }
+    private void txtNumeroDocumentoKeyTyped(java.awt.event.KeyEvent evt) {                                            
+        char c= evt.getKeyChar();
+                if(c<'0'|| c>'9')evt.consume();
+    }                                           
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {                                     
+        char c= evt.getKeyChar();
+                if(c<'0'|| c>'9')evt.consume();
+    }                                    
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {                                   
+      char c=evt.getKeyChar();
+      if((c<'a'||c>'z')&&(c<'A')|c>'Z')evt.consume();
+    }                                  
+
+    private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {                                     
+          char c=evt.getKeyChar();
+      if((c<'a'||c>'z')&&(c<'A')|c>'Z')evt.consume();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
