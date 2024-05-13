@@ -140,9 +140,9 @@ public class EliminarMsc extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnElim)
-                    .addComponent(btnRegresar))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRegresar)
+                    .addComponent(btnElim))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
 
@@ -196,7 +196,7 @@ public class EliminarMsc extends javax.swing.JPanel {
             }
             bw.close();         
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+
         }
         
         JOptionPane.showMessageDialog(null, "Mascota eliminada con exito!!");

@@ -3,6 +3,7 @@ package gui;
 
 
 import java.awt.BorderLayout;
+import packagecitas.citaspantalla;
 import packageclientes.Registrar;
 import packagemascotas.mascotaspantalla;
 
@@ -12,6 +13,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
     }
 
 
@@ -39,6 +41,11 @@ public class Principal extends javax.swing.JFrame {
         btnGTC.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnGTC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/cronograma.png"))); // NOI18N
         btnGTC.setText(" Gestion Citas");
+        btnGTC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGTCActionPerformed(evt);
+            }
+        });
 
         btnGM.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnGM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/mascotas.png"))); // NOI18N
@@ -150,6 +157,16 @@ public class Principal extends javax.swing.JFrame {
         contentp.revalidate();
         contentp.repaint();
     }//GEN-LAST:event_btnGMActionPerformed
+
+    private void btnGTCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGTCActionPerformed
+        citaspantalla p5=new citaspantalla();
+        p5.setSize(980,520);
+        p5.setLocation(0, 0);
+        contentp.removeAll();
+        contentp.add(p5,BorderLayout.CENTER);
+        contentp.revalidate();
+        contentp.repaint();
+    }//GEN-LAST:event_btnGTCActionPerformed
 
     public static void main(String args[]) {
 

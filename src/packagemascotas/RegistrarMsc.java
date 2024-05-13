@@ -39,12 +39,12 @@ public class RegistrarMsc extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        lstEspecie = new javax.swing.JComboBox<>();
-        lstTvida = new javax.swing.JComboBox<>();
         txtCedula = new javax.swing.JTextField();
         txtMascID = new javax.swing.JTextField();
         txtTsangre = new javax.swing.JTextField();
         txtColor = new javax.swing.JTextField();
+        txtTvida = new javax.swing.JTextField();
+        txtEspecie = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/packageclientes/registrar.png"))); // NOI18N
@@ -85,10 +85,6 @@ public class RegistrarMsc extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel9.setText("Tiempo de vida");
 
-        lstEspecie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "         ", "Perro", "Gato", "Conejo", "Loro" }));
-
-        lstTvida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "               ", "(...) meses", "1 año(s)", "2 años(s)", "3 años(s)" }));
-
         txtTsangre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTsangreActionPerformed(evt);
@@ -110,31 +106,25 @@ public class RegistrarMsc extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtNmasc, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43)
+                                .addGap(25, 25, 25)
                                 .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTsangre))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(btnVaciarMasct)
-                                        .addGap(41, 41, 41)
-                                        .addComponent(btnGuardarMasct))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addGap(4, 4, 4)
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(jLabel9)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lstTvida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtTsangre, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtTvida, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -142,12 +132,17 @@ public class RegistrarMsc extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtMascID, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtMascID, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnVaciarMasct)
+                                .addGap(79, 79, 79)
+                                .addComponent(btnGuardarMasct)
+                                .addGap(90, 90, 90))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
+                        .addGap(114, 114, 114)
                         .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(lstEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -155,11 +150,12 @@ public class RegistrarMsc extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel5)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMascID, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMascID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel5)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNmasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -170,19 +166,19 @@ public class RegistrarMsc extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel9)
-                    .addComponent(lstTvida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTvida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(lstEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVaciarMasct)
-                    .addComponent(btnGuardarMasct))
-                .addGap(36, 36, 36))
+                    .addComponent(btnGuardarMasct)
+                    .addComponent(btnVaciarMasct))
+                .addGap(52, 52, 52))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -203,30 +199,30 @@ public class RegistrarMsc extends javax.swing.JPanel {
         txtMascID.setText("");
         txtTsangre.setText("");
         txtColor.setText("");
-        lstTvida.setSelectedIndex(0);
-        lstEspecie.setSelectedIndex(0);
+        txtTvida.setText("");
+        txtEspecie.setText("");
         setWhite();
     }//GEN-LAST:event_btnVaciarMasctActionPerformed
 
     private void btnGuardarMasctActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarMasctActionPerformed
         Mascotas mascota= new Mascotas(); 
         int validacion = 0;
-        String nombreM,CCliente,IDmasc,color,Tsangre,apellido;
-        Object tvidaSeleccionado,especieSeleccionada;
+        String nombreM,CCliente,IDmasc,color,Tsangre,apellido,Tvida,especie;
+        
         CCliente = txtCedula.getText().trim();
         nombreM = txtNmasc.getText().trim();
         color = txtColor.getText().trim();
         Tsangre =txtTsangre.getText().trim();
         IDmasc = txtMascID.getText();
-        tvidaSeleccionado = lstTvida.getSelectedItem();
-        especieSeleccionada = lstEspecie.getSelectedItem();
+        Tvida = txtTvida.getText();
+        especie = txtEspecie.getText();
         
         mascota.setIDmascota(Integer.parseInt(IDmasc));
         mascota.setnombreM(nombreM);
         mascota.setColor(color);
         mascota.setTsangre(Tsangre);
-        mascota.setTvida((String) tvidaSeleccionado);
-        mascota.setEspecie((String) especieSeleccionada);
+        mascota.setTvida(Tvida);
+        mascota.setEspecie(especie);
         
         metodo.guardarMsc(mascota);
         
@@ -256,17 +252,15 @@ public class RegistrarMsc extends javax.swing.JPanel {
                validacion++;   
             }
             
-            if (tvidaSeleccionado.equals(null)  || ((String) tvidaSeleccionado).isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Debe seleccionar una opción válida de Vida útil.");
-                validacion++;
-    
+            if (Tvida.equals("")){
+               txtTvida.setBackground(Color.red);
+               validacion++;   
             }
 
-            if (especieSeleccionada.equals(null)  || ((String) especieSeleccionada).isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Debe seleccionar una opción válida de Especie.");
-                validacion++;
+            if (especie.equals("")){
+               txtEspecie.setBackground(Color.red);
+               validacion++;   
             }
-            
             
             if (validacion != 0){
                 JOptionPane.showMessageDialog(null, "Se deben completar todos los campos");
@@ -276,6 +270,8 @@ public class RegistrarMsc extends javax.swing.JPanel {
                 txtColor.setBackground(Color.green);
                 txtTsangre.setBackground(Color.green);
                 txtMascID.setBackground(Color.green);
+                txtTvida.setBackground(Color.green);
+                txtEspecie.setBackground(Color.green);
                 JOptionPane.showMessageDialog(null, "Registro Exitoso");
                 
                 
@@ -286,7 +282,7 @@ public class RegistrarMsc extends javax.swing.JPanel {
     try {
         
         if (!nombreM.isEmpty() && !IDmasc.isEmpty() &&
-            !color.isEmpty() && !Tsangre.isEmpty() && !especieSeleccionada.equals(0) && !tvidaSeleccionado.equals(0)) {
+            !color.isEmpty() && !Tsangre.isEmpty() && !Tvida.isEmpty() && !especie.isEmpty()) {
 
             // Escribe los datos en el archivo "clientes.txt"
             FileWriter writer = new FileWriter("mascotas.txt", true);
@@ -297,8 +293,8 @@ public class RegistrarMsc extends javax.swing.JPanel {
             pw.print("|"+nombreM);
             pw.print("|"+color);
             pw.print("|"+Tsangre);
-            pw.print("|"+tvidaSeleccionado);
-            pw.println("|"+especieSeleccionada);
+            pw.print("|"+Tvida);
+            pw.println("|"+especie);
             pw.close();
             JOptionPane.showMessageDialog(null, "Datos guardados correctamente.");
             System.out.println("Datos guardados correctamente.");
@@ -328,6 +324,8 @@ public class RegistrarMsc extends javax.swing.JPanel {
         txtColor.setBackground(Color.WHITE);
         txtTsangre.setBackground(Color.WHITE);
         txtMascID.setBackground(Color.WHITE);
+        txtTvida.setBackground(Color.WHITE);
+        txtEspecie.setBackground(Color.WHITE);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -343,12 +341,12 @@ public class RegistrarMsc extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JComboBox<String> lstEspecie;
-    private javax.swing.JComboBox<String> lstTvida;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtColor;
+    private javax.swing.JTextField txtEspecie;
     private javax.swing.JTextField txtMascID;
     private javax.swing.JTextField txtNmasc;
     private javax.swing.JTextField txtTsangre;
+    private javax.swing.JTextField txtTvida;
     // End of variables declaration//GEN-END:variables
 }
