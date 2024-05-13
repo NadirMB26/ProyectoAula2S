@@ -42,7 +42,6 @@ public class ActualizarMsc extends javax.swing.JPanel {
         btnUpdater = new javax.swing.JButton();
         btnVaciar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        lstEspecie = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         txtTsangre = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -50,7 +49,8 @@ public class ActualizarMsc extends javax.swing.JPanel {
         txtColor = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblUpdMas = new javax.swing.JTable();
-        lstTvida = new javax.swing.JComboBox<>();
+        txtEspecie = new javax.swing.JTextField();
+        txtTvida = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/packageclientes/captcha (1).png"))); // NOI18N
@@ -89,8 +89,6 @@ public class ActualizarMsc extends javax.swing.JPanel {
             }
         });
 
-        lstEspecie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "         ", "Perro", "Gato", "Loro", "Conejo" }));
-
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel5.setText("T sangre");
 
@@ -124,8 +122,6 @@ public class ActualizarMsc extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblUpdMas);
 
-        lstTvida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "               ", "(...) meses", "1 año(s)", "2 años(s)", "3 años(s)" }));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -136,27 +132,17 @@ public class ActualizarMsc extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5))
+                        .addComponent(jLabel3)
+                        .addGap(19, 19, 19)
+                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtTsangre, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel6)
-                                .addGap(7, 7, 7)
-                                .addComponent(lstTvida, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lstEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTvida, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -164,7 +150,16 @@ public class ActualizarMsc extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnVaciar)
                             .addComponent(jButton3)
-                            .addComponent(btnUpdater))))
+                            .addComponent(btnUpdater)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtTsangre, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -176,11 +171,10 @@ public class ActualizarMsc extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lstEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(lstTvida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel6)
+                    .addComponent(txtEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTvida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -191,12 +185,19 @@ public class ActualizarMsc extends javax.swing.JPanel {
                         .addComponent(btnUpdater)
                         .addGap(25, 25, 25))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTsangre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 19, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 1, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtTsangre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(41, 41, 41))
         );
@@ -230,17 +231,17 @@ public class ActualizarMsc extends javax.swing.JPanel {
         txtName.setText("");
         txtColor.setText("");
         txtTsangre.setText("");
-        lstTvida.setSelectedIndex(0);
-        lstEspecie.setSelectedIndex(0);
+        txtTvida.setText("");
+        txtEspecie.setText("");
     }//GEN-LAST:event_btnVaciarActionPerformed
 
     private void btnUpdaterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdaterActionPerformed
         String []datos = new String[5];
-        datos[0]=txtName.getText();
-        datos[1]=txtTsangre.getText();
-        datos[2]=txtColor.getText();
-        datos[3]=lstTvida.getSelectedItem().toString();
-        datos[4]=lstEspecie.getSelectedItem().toString();
+        datos[3]=txtName.getText();
+        datos[4]=txtTsangre.getText();
+        datos[5]=txtColor.getText();
+        datos[6]=txtTvida.getText().toString();
+        datos[7]=txtEspecie.getText().toString();
         
         for (int k=0;k<tblUpdMas.getColumnCount();k++){
             tblUpdMas.setValueAt(datos[k],filas,k);
@@ -274,8 +275,8 @@ public class ActualizarMsc extends javax.swing.JPanel {
         txtName.setText(tblUpdMas.getValueAt(selecccion,3).toString());
         txtColor.setText(tblUpdMas.getValueAt(selecccion,4).toString());
         txtTsangre.setText(tblUpdMas.getValueAt(selecccion,5).toString());
-        lstTvida.setToolTipText(tblUpdMas.getValueAt(selecccion,6).toString());
-        lstEspecie.setToolTipText(tblUpdMas.getValueAt(selecccion,7).toString());
+        txtTvida.setText(tblUpdMas.getValueAt(selecccion,6).toString());
+        txtEspecie.setText(tblUpdMas.getValueAt(selecccion,7).toString());
         filas = selecccion;
     }//GEN-LAST:event_tblUpdMasMouseClicked
 
@@ -292,11 +293,11 @@ public class ActualizarMsc extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> lstEspecie;
-    private javax.swing.JComboBox<String> lstTvida;
     private javax.swing.JTable tblUpdMas;
     private javax.swing.JTextField txtColor;
+    private javax.swing.JTextField txtEspecie;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtTsangre;
+    private javax.swing.JTextField txtTvida;
     // End of variables declaration//GEN-END:variables
 }
