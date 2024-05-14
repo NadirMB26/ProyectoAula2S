@@ -4,6 +4,8 @@ package Principal;
 
 import java.awt.BorderLayout;
 import java.util.*;
+import packagecitas.citaspantalla;
+import packagemascotas.mascotaspantalla;
 import packagemascotas.pantallamascotas;
 
 public class Principal extends javax.swing.JFrame implements Runnable {
@@ -180,11 +182,23 @@ try{
     }//GEN-LAST:event_btnGCActionPerformed
 
     private void btnGMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGMActionPerformed
-      new pantallamascotas().setVisible(true);
+        mascotaspantalla p2=new mascotaspantalla();
+        p2.setSize(980,520);
+        p2.setLocation(0, 0);
+        contentp.removeAll();
+        contentp.add(p2,BorderLayout.CENTER);
+        contentp.revalidate();
+        contentp.repaint();
     }//GEN-LAST:event_btnGMActionPerformed
 
     private void btnGTCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGTCActionPerformed
-
+        citaspantalla p3=new citaspantalla();
+        p3.setSize(980,520);
+        p3.setLocation(0, 0);
+        contentp.removeAll();
+        contentp.add(p3,BorderLayout.CENTER);
+        contentp.revalidate();
+        contentp.repaint();
     }//GEN-LAST:event_btnGTCActionPerformed
 
     public static void main(String args[]) {
