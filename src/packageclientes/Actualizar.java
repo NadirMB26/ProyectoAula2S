@@ -118,6 +118,11 @@ public class Actualizar extends javax.swing.JPanel {
                 txttelefonoActionPerformed(evt);
             }
         });
+        txttelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txttelefonoKeyTyped(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel8.setText("Digita la Cedula");
@@ -291,7 +296,8 @@ public class Actualizar extends javax.swing.JPanel {
     }//GEN-LAST:event_txttelefonoActionPerformed
 
     private void CbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbuscarActionPerformed
-     String searchTerm = txtCedula.getText().trim();
+     int a=0;   
+        String searchTerm = txtCedula.getText().trim();
             for (int i = 0; i < tblusuarios2.getRowCount(); i++) {
                 String documento = (String) tblusuarios2.getValueAt(i, 0);
                 if (documento.equals(searchTerm)) {
@@ -299,34 +305,34 @@ public class Actualizar extends javax.swing.JPanel {
                     tblusuarios2.setRowSelectionInterval(i, i);
                     // Hacer scroll a la fila seleccionada
                     tblusuarios2.scrollRectToVisible(new Rectangle(tblusuarios2.getCellRect(i, 0, true)));
-                    
-          this.mdlTabla=(DefaultTableModel)tblusuarios2.getModel();
-          int seleccion=tblusuarios2.getSelectedRow();
-           txtcedula.setText(tblusuarios2.getValueAt(seleccion, 0).toString());
-           txtnombre.setText(tblusuarios2.getValueAt(seleccion, 1).toString());
-           txtapellido.setText(tblusuarios2.getValueAt(seleccion,2).toString());
-           txtdireccion.setText(tblusuarios2.getValueAt(seleccion,3).toString());
-           txtcorreo.setText(tblusuarios2.getValueAt(seleccion, 4).toString());
-           txttelefono.setText(tblusuarios2.getValueAt(seleccion, 5).toString());
-           filas=seleccion;
+                    a=1;
+                   
                     break;
-                }else{
-                    JOptionPane.showMessageDialog(null,"Cliente no encontrado");
+                } else{
+                   
                 }
+            }
+            if(a==1){
+                 JOptionPane.showMessageDialog(this,"Cliente encontrado y celeccionado");
+                
+            }else{
+              JOptionPane.showMessageDialog(null,"Cliente no encontrado");   
             }
 
     }//GEN-LAST:event_CbuscarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        String []datos=new String[6];
+        int a=JOptionPane.showConfirmDialog(this,"Deseas eliminar este cliente?");
+        if(a==0){
+     String []datos=new String[6];
         datos[0]=txtcedula.getText();
         datos[1]=txtnombre.getText();
         datos[2]=txtapellido.getText();
         datos[3]=txtdireccion.getText();
         datos[4]=txtcorreo.getText();
         datos[5]=txttelefono.getText();
-              if(datos[0].isEmpty()&& datos[1].isEmpty()&&datos[2].isEmpty()&&datos[3].isEmpty()&&datos[4].isEmpty()&&datos[5].isEmpty()||datos[0].isEmpty()|| datos[1].isEmpty()||datos[2].isEmpty()||datos[3].isEmpty()||datos[4].isEmpty()||datos[5].isEmpty()){
-            JOptionPane.showMessageDialog(null,"Datos insuficientes");
+        if(datos[0].isEmpty()&& datos[1].isEmpty()&&datos[2].isEmpty()&&datos[3].isEmpty()&&datos[4].isEmpty()&&datos[5].isEmpty()||datos[0].isEmpty()|| datos[1].isEmpty()||datos[2].isEmpty()||datos[3].isEmpty()||datos[4].isEmpty()||datos[5].isEmpty()){
+        JOptionPane.showMessageDialog(null,"Datos insuficientes");
         }else{
         for(int k=0;k<tblusuarios2.getColumnCount();k++){
             tblusuarios2.setValueAt(datos[k],filas,k);
@@ -357,6 +363,15 @@ public class Actualizar extends javax.swing.JPanel {
        txtcorreo.setText("");
        txttelefono.setText("");
               }    
+        }else if(a==1){
+     
+      JOptionPane.showMessageDialog(this,"Este cliente no se actualizo");
+        }else{
+        JOptionPane.showMessageDialog(this,"Cancelaste la operacion");
+        }
+        
+        
+        
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void tblusuarios2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblusuarios2MouseClicked
@@ -371,6 +386,11 @@ public class Actualizar extends javax.swing.JPanel {
        filas=seleccion;
       
     }//GEN-LAST:event_tblusuarios2MouseClicked
+
+    private void txttelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyTyped
+       char c= evt.getKeyChar();
+                if(c<'0'|| c>'9')evt.consume();
+    }//GEN-LAST:event_txttelefonoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

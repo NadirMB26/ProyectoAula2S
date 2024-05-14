@@ -48,7 +48,7 @@ DefaultTableModel modelo=new DefaultTableModel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
-        bnEliminar = new javax.swing.JButton();
+        btnbuscarE = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblusuarios3 = new javax.swing.JTable();
         btnEliminar = new javax.swing.JButton();
@@ -66,10 +66,10 @@ DefaultTableModel modelo=new DefaultTableModel();
             }
         });
 
-        bnEliminar.setText("Buscar");
-        bnEliminar.addActionListener(new java.awt.event.ActionListener() {
+        btnbuscarE.setText("Buscar");
+        btnbuscarE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bnEliminarActionPerformed(evt);
+                btnbuscarEActionPerformed(evt);
             }
         });
 
@@ -109,7 +109,7 @@ DefaultTableModel modelo=new DefaultTableModel();
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtCedula)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(bnEliminar))))
+                                .addComponent(btnbuscarE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -126,7 +126,7 @@ DefaultTableModel modelo=new DefaultTableModel();
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bnEliminar))
+                    .addComponent(btnbuscarE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
@@ -150,9 +150,9 @@ DefaultTableModel modelo=new DefaultTableModel();
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
   
-//        String op = JOptionPane.showInputDialog("Desea eliminar este cliente?");
-//        JOptionPane.showMessageDialog(null, "¡Hola, " + op + "!", "Saludo Personalizado", JOptionPane.INFORMATION_MESSAGE);
-//        if()
+       
+        int a=JOptionPane.showConfirmDialog(this,"Deseas eliminar este cliente?");
+        if(a==0){
       this.modelo=(DefaultTableModel)tblusuarios3.getModel();
       modelo.removeRow(tblusuarios3.getSelectedRow());
       try{
@@ -168,13 +168,21 @@ DefaultTableModel modelo=new DefaultTableModel();
           bw.newLine();
           }
           bw.close();
+          JOptionPane.showMessageDialog(this,"Cliente eliminado con exito");
       }catch(Exception e){
           JOptionPane.showMessageDialog(null, e);
       }
+        }else if(a==1){
+     
+      JOptionPane.showMessageDialog(this,"Este cliente no se elimino");
+        }else{
+        JOptionPane.showMessageDialog(this,"Cancelaste la operacion");
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void bnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnEliminarActionPerformed
-           String searchTerm = txtCedula.getText().trim();
+    private void btnbuscarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarEActionPerformed
+        int a=0;   
+        String searchTerm = txtCedula.getText().trim();
             for (int i = 0; i < tblusuarios3.getRowCount(); i++) {
                 String documento = (String) tblusuarios3.getValueAt(i, 0);
                 if (documento.equals(searchTerm)) {
@@ -182,12 +190,20 @@ DefaultTableModel modelo=new DefaultTableModel();
                     tblusuarios3.setRowSelectionInterval(i, i);
                     // Hacer scroll a la fila seleccionada
                     tblusuarios3.scrollRectToVisible(new Rectangle(tblusuarios3.getCellRect(i, 0, true)));
+                    a=1;
+                   
                     break;
                 } else{
-                    JOptionPane.showMessageDialog(null,"Cliente no encontrado");
+                   
                 }
             }
-    }//GEN-LAST:event_bnEliminarActionPerformed
+            if(a==1){
+                 JOptionPane.showMessageDialog(this,"Cliente encontrado y celeccionado");
+                
+            }else{
+              JOptionPane.showMessageDialog(null,"Cliente no encontrado");   
+            }
+    }//GEN-LAST:event_btnbuscarEActionPerformed
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
         char c= evt.getKeyChar();
@@ -196,8 +212,8 @@ DefaultTableModel modelo=new DefaultTableModel();
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bnEliminar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnbuscarE;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

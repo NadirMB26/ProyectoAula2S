@@ -133,7 +133,8 @@ public class Consultar extends javax.swing.JPanel {
   
 
     private void CbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbuscarActionPerformed
-    String searchTerm = txtCedula.getText().trim();
+    int a=0;   
+        String searchTerm = txtCedula.getText().trim();
             for (int i = 0; i < tblusuarios2.getRowCount(); i++) {
                 String documento = (String) tblusuarios2.getValueAt(i, 0);
                 if (documento.equals(searchTerm)) {
@@ -141,12 +142,19 @@ public class Consultar extends javax.swing.JPanel {
                     tblusuarios2.setRowSelectionInterval(i, i);
                     // Hacer scroll a la fila seleccionada
                     tblusuarios2.scrollRectToVisible(new Rectangle(tblusuarios2.getCellRect(i, 0, true)));
+                    a=1;
+                   
                     break;
-                }else{
-                    JOptionPane.showMessageDialog(null,"Cliente no encontrado");
+                } else{
+                   
                 }
             }
-      
+            if(a==1){
+                 JOptionPane.showMessageDialog(this,"Cliente encontrado y celeccionado");
+                
+            }else{
+              JOptionPane.showMessageDialog(null,"Cliente no encontrado");   
+            }
     }//GEN-LAST:event_CbuscarActionPerformed
 
 

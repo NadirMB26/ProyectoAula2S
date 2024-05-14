@@ -217,19 +217,49 @@ public class Registrar extends javax.swing.JPanel {
 
     private void btnGuardarRclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarRclienteActionPerformed
      Clientes cliente = new Clientes();
-     int validacion = 0;
+    
     cliente.ndocumento = txtNumeroDocumento.getText().trim();
     String searchTerm = txtNumeroDocumento.getText().trim();
     boolean c=bcliente(cliente.ndocumento,searchTerm);
     if(c==true){
-       JOptionPane.showMessageDialog(null,"Este Cliente ya esta registrado en el sistema");  
+    JOptionPane.showMessageDialog(null,"Este Cliente ya esta registrado en el sistema"); 
+    vcolors();
     }else{
+    vcolors();
     cliente.apellido = txtApellido.getText().trim();
     cliente.nombre = txtNombre.getText().trim();
     cliente.direccion = txtDireccion.getText().trim();
     cliente.correo = txtCorreo.getText().trim();
     cliente.telefono =txtTelefono.getText().trim();
-        
+    
+  
+            
+           
+    // Guardar los datos en un archivo (puedes elegir el tipo de archivo según tus necesidades)
+    // Por ejemplo, guardar en un archivo de texto:
+   try {
+    PrintWriter writer = new PrintWriter(new FileWriter("clientes.csv", true));
+    // Escribir los datos en formato CSV
+    writer.printf("%s,%s,%s,%s,%s,%s%n", 
+                   cliente.ndocumento, 
+                   cliente.nombre, 
+                   cliente.apellido, 
+                   cliente.direccion, 
+                   cliente.correo, 
+                   cliente.telefono);
+    writer.close();
+    JOptionPane.showMessageDialog(null, "Datos guardados correctamente.");
+    System.out.println("Datos guardados correctamente.");
+} catch (IOException ex) {
+    System.err.println("Error al guardar los datos: " + ex.getMessage());
+}
+
+    
+    }
+    }//GEN-LAST:event_btnGuardarRclienteActionPerformed
+
+   public void vcolors(){
+   int validacion = 0;
    String nd = txtNumeroDocumento.getText().trim();
    String ap = txtApellido.getText().trim();
    String nb = txtNombre.getText().trim();
@@ -278,32 +308,12 @@ public class Registrar extends javax.swing.JPanel {
                 txtApellido.setBackground(Color.green);
                 setWhite();
                 
-            }
-            
-           
-    // Guardar los datos en un archivo (puedes elegir el tipo de archivo según tus necesidades)
-    // Por ejemplo, guardar en un archivo de texto:
-   try {
-    PrintWriter writer = new PrintWriter(new FileWriter("clientes.csv", true));
-    // Escribir los datos en formato CSV
-    writer.printf("%s,%s,%s,%s,%s,%s%n", 
-                   cliente.ndocumento, 
-                   cliente.nombre, 
-                   cliente.apellido, 
-                   cliente.direccion, 
-                   cliente.correo, 
-                   cliente.telefono);
-    writer.close();
-    JOptionPane.showMessageDialog(null, "Datos guardados correctamente.");
-    System.out.println("Datos guardados correctamente.");
-} catch (IOException ex) {
-    System.err.println("Error al guardar los datos: " + ex.getMessage());
-}
-
+            } 
+    
     
     }
-    }//GEN-LAST:event_btnGuardarRclienteActionPerformed
-public boolean bcliente(String cc,String searchTerm ){
+    
+    public boolean bcliente(String cc,String searchTerm ){
 
             for (int i = 0; i < tblusuarios2.getRowCount(); i++) {
                 String documento = (String) tblusuarios2.getValueAt(i, 0);
