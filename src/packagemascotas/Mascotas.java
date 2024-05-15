@@ -1,16 +1,10 @@
 
 package packagemascotas;
 
-import java.awt.Color;
-import javax.swing.JLabel;
-import packageclientes.Clientes;
 
 public class Mascotas {
-    
-    Clientes cliente;
-    
-    int Ndocument;
-    int IDmascota;
+ 
+    String Ndocument;
     String nombreM;
     String color;
     String Tsangre;
@@ -21,31 +15,24 @@ public class Mascotas {
         
     }
     
-    public Mascotas(int Ndocument, int IDmascota, String nombreM, String color, String Tsangre,Object Tvida, Object especie) {
-        this.IDmascota = IDmascota;
+    public Mascotas(String Ndocument, String nombreM, String color, String Tsangre,String Tvida, String especie) {
+        this.Ndocument = Ndocument;
         this.nombreM = nombreM;
         this.color = color;
         this.Tsangre = Tsangre;
-        this.especie = (String) especie;
-        this.Tvida = (String) Tvida;
+        this.Tvida =  Tvida;
+        this.especie = especie;
+        
     }
     
 
 
-    public int getNdocument() {
+    public String getNdocument() {
         return Ndocument;
     }
 
-    public void setNdocumento(int Ndocumento) {
+    public void setNdocumento(String Ndocumento) {
         this.Ndocument = Ndocument;
-    }
-    
-    public int getIDmascota() {
-        return IDmascota;
-    }
-    
-    public void setIDmascota(int IDmascota) {
-        this.IDmascota = IDmascota;
     }
 
     public String getnombreM() {
@@ -90,7 +77,7 @@ public class Mascotas {
 
     @Override
     public String toString() {
-        return "Mascotas{" + "Ndocument=" + ", nombreM=" + nombreM + ", color=" + color + ", Tsangre=" + Tsangre + ", especie=" + especie + '}';
+        return "Mascotas{" + "Ndocument="+Ndocument + ", nombreM=" + nombreM + ", color=" + color + ", Tsangre=" + Tsangre + ", especie=" + especie + '}';
     }
   
     

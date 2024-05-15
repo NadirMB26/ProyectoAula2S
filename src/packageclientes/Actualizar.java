@@ -322,69 +322,68 @@ public class Actualizar extends javax.swing.JPanel {
     }//GEN-LAST:event_CbuscarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        int a=JOptionPane.showConfirmDialog(this,"Deseas eliminar este cliente?");
-        if(a==0){
-     String []datos=new String[6];
-        datos[0]=txtcedula.getText();
-        datos[1]=txtnombre.getText();
-        datos[2]=txtapellido.getText();
-        datos[3]=txtdireccion.getText();
-        datos[4]=txtcorreo.getText();
-        datos[5]=txttelefono.getText();
-        if(datos[0].isEmpty()&& datos[1].isEmpty()&&datos[2].isEmpty()&&datos[3].isEmpty()&&datos[4].isEmpty()&&datos[5].isEmpty()||datos[0].isEmpty()|| datos[1].isEmpty()||datos[2].isEmpty()||datos[3].isEmpty()||datos[4].isEmpty()||datos[5].isEmpty()){
-        JOptionPane.showMessageDialog(null,"Datos insuficientes");
-        }else{
-        for(int k=0;k<tblusuarios2.getColumnCount();k++){
-            tblusuarios2.setValueAt(datos[k],filas,k);
+        int a = JOptionPane.showConfirmDialog(this, "Deseas actualizar este cliente?");
+        if (a == 0) {
+            String[] datos = new String[6];
+            datos[0] = txtcedula.getText();
+            datos[1] = txtnombre.getText();
+            datos[2] = txtapellido.getText();
+            datos[3] = txtdireccion.getText();
+            datos[4] = txtcorreo.getText();
+            datos[5] = txttelefono.getText();
+            if (datos[0].isEmpty() && datos[1].isEmpty() && datos[2].isEmpty() && datos[3].isEmpty() && datos[4].isEmpty() && datos[5].isEmpty() || datos[0].isEmpty() || datos[1].isEmpty() || datos[2].isEmpty() || datos[3].isEmpty() || datos[4].isEmpty() || datos[5].isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Datos insuficientes");
+            } else {
+                for (int k = 0; k < tblusuarios2.getColumnCount(); k++) {
+                    tblusuarios2.setValueAt(datos[k], filas, k);
+                }
+                try {
+                    String archivo = "Clientes.csv";
+                    BufferedWriter bw = new BufferedWriter(new FileWriter(archivo));
+                    for (int i = 0; i < tblusuarios2.getRowCount(); i++) {
+                        for (int j = 0; j < tblusuarios2.getColumnCount(); j++) {
+
+                            bw.write((String) (tblusuarios2.getValueAt(i, j)));
+                            if (j < tblusuarios2.getColumnCount() - 1) {
+                                bw.write(",");
+                            }
+                        }
+                        bw.newLine();
+
+                    }
+                    bw.close();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
+                }
+                JOptionPane.showMessageDialog(null, "Registro Actualizado");
+                txtcedula.setText("");
+                txtnombre.setText("");
+                txtapellido.setText("");
+                txtdireccion.setText("");
+                txtcorreo.setText("");
+                txttelefono.setText("");
+            }
+        } else if (a == 1) {
+
+            JOptionPane.showMessageDialog(this, "Este cliente no se actualizo");
+        } else {
+            JOptionPane.showMessageDialog(this, "Cancelaste la operacion");
         }
-        try{
-          String archivo="Clientes.csv";
-          BufferedWriter bw=new BufferedWriter(new FileWriter(archivo));
-          for(int i=0;i<tblusuarios2.getRowCount();i++){
-          for(int j=0;j<tblusuarios2.getColumnCount();j++){
-              
-              bw.write((String)(tblusuarios2.getValueAt(i,j)));
-              if(j<tblusuarios2.getColumnCount()-1){
-                  bw.write(",");
-              }
-          }
-          bw.newLine();
-          
-          } 
-          bw.close();
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
-    }
-       JOptionPane.showMessageDialog(null,"Registro Actualizado");
-       txtcedula.setText("");
-       txtnombre.setText("");
-       txtapellido.setText("");
-       txtdireccion.setText("");
-       txtcorreo.setText("");
-       txttelefono.setText("");
-              }    
-        }else if(a==1){
-     
-      JOptionPane.showMessageDialog(this,"Este cliente no se actualizo");
-        }else{
-        JOptionPane.showMessageDialog(this,"Cancelaste la operacion");
-        }
-        
-        
-        
+
+
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void tblusuarios2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblusuarios2MouseClicked
-      this.mdlTabla=(DefaultTableModel)tblusuarios2.getModel();
-      int seleccion=tblusuarios2.getSelectedRow();
-       txtcedula.setText(tblusuarios2.getValueAt(seleccion, 0).toString());
-       txtnombre.setText(tblusuarios2.getValueAt(seleccion, 1).toString());
-       txtapellido.setText(tblusuarios2.getValueAt(seleccion,2).toString());
-       txtdireccion.setText(tblusuarios2.getValueAt(seleccion,3).toString());
-       txtcorreo.setText(tblusuarios2.getValueAt(seleccion, 4).toString());
-       txttelefono.setText(tblusuarios2.getValueAt(seleccion, 5).toString());
-       filas=seleccion;
-      
+        this.mdlTabla = (DefaultTableModel) tblusuarios2.getModel();
+        int seleccion = tblusuarios2.getSelectedRow();
+        txtcedula.setText(tblusuarios2.getValueAt(seleccion, 0).toString());
+        txtnombre.setText(tblusuarios2.getValueAt(seleccion, 1).toString());
+        txtapellido.setText(tblusuarios2.getValueAt(seleccion, 2).toString());
+        txtdireccion.setText(tblusuarios2.getValueAt(seleccion, 3).toString());
+        txtcorreo.setText(tblusuarios2.getValueAt(seleccion, 4).toString());
+        txttelefono.setText(tblusuarios2.getValueAt(seleccion, 5).toString());
+        filas = seleccion;
+
     }//GEN-LAST:event_tblusuarios2MouseClicked
 
     private void txttelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyTyped

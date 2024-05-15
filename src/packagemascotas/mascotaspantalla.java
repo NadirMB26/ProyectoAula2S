@@ -2,25 +2,19 @@
 package packagemascotas;
 
 import java.awt.BorderLayout;
-import packagemascotas.ActualizarMsc;
-import packagemascotas.ConsultarMsc;
-import packagemascotas.EliminarMsc;
-import packagemascotas.ListadoM;
-import packagemascotas.RegistrarMsc;
-
 
 public class mascotaspantalla extends javax.swing.JPanel {
 
     public mascotaspantalla() {
         initComponents();
-        RegistrarMsc p1=new RegistrarMsc();
-        p1.setSize(680,420);
+        RegistrarMsc p1 = new RegistrarMsc();
+        p1.setSize(680, 420);
         p1.setLocation(0, 0);
         content.removeAll();
-        content.add(p1,BorderLayout.CENTER);
+        content.add(p1, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
-      
+
     }
 
     /**
@@ -36,7 +30,6 @@ public class mascotaspantalla extends javax.swing.JPanel {
         btnRegistrar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnConsultar = new javax.swing.JButton();
-        btnlistado = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
@@ -82,15 +75,6 @@ public class mascotaspantalla extends javax.swing.JPanel {
         });
         add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 90, -1));
 
-        btnlistado.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        btnlistado.setText("Listado");
-        btnlistado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnlistadoActionPerformed(evt);
-            }
-        });
-        add(btnlistado, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 90, -1));
-
         btnEliminar.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +82,7 @@ public class mascotaspantalla extends javax.swing.JPanel {
                 btnEliminarActionPerformed(evt);
             }
         });
-        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, 100, -1));
+        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 100, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/packageclientes/atencion-al-cliente (3).png"))); // NOI18N
@@ -107,51 +91,41 @@ public class mascotaspantalla extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        RegistrarMsc p1=new RegistrarMsc();
-        p1.setSize(680,420);
+        RegistrarMsc p1 = new RegistrarMsc();
+        p1.setSize(680, 420);
         p1.setLocation(0, 0);
         content.removeAll();
-        content.add(p1,BorderLayout.CENTER);
+        content.add(p1, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        ActualizarMsc p2=new ActualizarMsc();
-        p2.setSize(680,420);
+        ActualizarMsc p2 = new ActualizarMsc();
+        p2.setSize(680, 420);
         p2.setLocation(0, 0);
         content.removeAll();
-        content.add(p2,BorderLayout.CENTER);
+        content.add(p2, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        ConsultarMsc p3=new ConsultarMsc();
-        p3.setSize(680,420);
+        ConsultarMsc p3 = new ConsultarMsc();
+        p3.setSize(680, 420);
         p3.setLocation(0, 0);
         content.removeAll();
-        content.add(p3,BorderLayout.CENTER);
+        content.add(p3, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_btnConsultarActionPerformed
 
-    private void btnlistadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlistadoActionPerformed
-        ListadoM p4=new ListadoM();
-        p4.setSize(680,420);
-        p4.setLocation(0, 0);
-        content.removeAll();
-        content.add(p4,BorderLayout.CENTER);
-        content.revalidate();
-        content.repaint();
-    }//GEN-LAST:event_btnlistadoActionPerformed
-
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        EliminarMsc p5=new EliminarMsc();
-        p5.setSize(680,420);
+        EliminarMsc p5 = new EliminarMsc();
+        p5.setSize(680, 420);
         p5.setLocation(0, 0);
         content.removeAll();
-        content.add(p5,BorderLayout.CENTER);
+        content.add(p5, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_btnEliminarActionPerformed
@@ -162,7 +136,6 @@ public class mascotaspantalla extends javax.swing.JPanel {
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JButton btnlistado;
     private javax.swing.JPanel content;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

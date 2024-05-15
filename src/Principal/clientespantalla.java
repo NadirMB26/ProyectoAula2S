@@ -5,7 +5,6 @@ import java.awt.BorderLayout;
 import packageclientes.Actualizar;
 import packageclientes.Consultar;
 import packageclientes.Eliminar;
-import packageclientes.Listado;
 import packageclientes.Registrar;
 
 
@@ -30,7 +29,6 @@ public class clientespantalla extends javax.swing.JPanel {
         btnRegistrar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnConsultar = new javax.swing.JButton();
-        btnlistado = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
@@ -74,16 +72,7 @@ public class clientespantalla extends javax.swing.JPanel {
                 btnConsultarActionPerformed(evt);
             }
         });
-        add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 90, -1));
-
-        btnlistado.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        btnlistado.setText("Listado");
-        btnlistado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnlistadoActionPerformed(evt);
-            }
-        });
-        add(btnlistado, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 90, -1));
+        add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 100, -1));
 
         btnEliminar.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         btnEliminar.setText("Eliminar");
@@ -92,7 +81,7 @@ public class clientespantalla extends javax.swing.JPanel {
                 btnEliminarActionPerformed(evt);
             }
         });
-        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, 100, -1));
+        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, 100, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/packageclientes/atencion-al-cliente (3).png"))); // NOI18N
@@ -130,17 +119,6 @@ public class clientespantalla extends javax.swing.JPanel {
         content.repaint();
     }//GEN-LAST:event_btnConsultarActionPerformed
 
-    private void btnlistadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlistadoActionPerformed
-        Listado p4=new Listado();
-        p4.setSize(680,420);
-        p4.setLocation(0, 0);
-        content.removeAll();
-        content.add(p4,BorderLayout.CENTER);
-        content.revalidate();
-        content.repaint();
-       
-    }//GEN-LAST:event_btnlistadoActionPerformed
-
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         Eliminar p5=new Eliminar();
         p5.setSize(680,420);
@@ -157,7 +135,6 @@ public class clientespantalla extends javax.swing.JPanel {
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JButton btnlistado;
     private javax.swing.JPanel content;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

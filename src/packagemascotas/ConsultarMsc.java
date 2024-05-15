@@ -4,6 +4,9 @@
  */
 package packagemascotas;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,16 +18,28 @@ public class ConsultarMsc extends javax.swing.JPanel {
     DefaultTableModel modelo=new DefaultTableModel();
     public ConsultarMsc() {
         initComponents();
-          modelo.addColumn("Cedula");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Apellidos");
-        modelo.addColumn("Direccion");
-        modelo.addColumn("Correo");
-        modelo.addColumn("Telefono");
+       modelo.addColumn("Cc.Cliente");
+        modelo.addColumn("Mascota");
+        modelo.addColumn("Color");
+        modelo.addColumn("Tipo de sangre");
+        modelo.addColumn("Especie");
+        modelo.addColumn("Edad");
         refrescarLista();
     }
      public void refrescarLista(){
-        tblusuarios2.setModel(modelo);
+     tblusuarios2.setModel(modelo);
+        File file = new File("mascotas.csv");
+        try {
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] parts = line.split(",");
+                modelo.addRow(parts);
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

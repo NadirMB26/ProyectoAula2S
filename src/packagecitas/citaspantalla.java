@@ -5,15 +5,14 @@ import java.awt.BorderLayout;
 import packagemascotas.ActualizarCts;
 import packagemascotas.ConsultarCts;
 import packagemascotas.EliminarCts;
-import packagecitas.ListadoCts;
-import packagecitas.RegistrarCts;
+import packagemascotas.RegistrarMsc;
 
 
 public class citaspantalla extends javax.swing.JPanel {
 
     public citaspantalla() {
         initComponents();
-        RegistrarCts p1=new RegistrarCts();
+       RegistrarCts p1=new RegistrarCts();
         p1.setSize(680,420);
         p1.setLocation(0, 0);
         content.removeAll();
@@ -36,7 +35,6 @@ public class citaspantalla extends javax.swing.JPanel {
         btnRegistrar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnConsultar = new javax.swing.JButton();
-        btnlistado = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
@@ -82,15 +80,6 @@ public class citaspantalla extends javax.swing.JPanel {
         });
         add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 90, -1));
 
-        btnlistado.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        btnlistado.setText("Listado");
-        btnlistado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnlistadoActionPerformed(evt);
-            }
-        });
-        add(btnlistado, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 90, -1));
-
         btnEliminar.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +87,7 @@ public class citaspantalla extends javax.swing.JPanel {
                 btnEliminarActionPerformed(evt);
             }
         });
-        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, 100, -1));
+        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, 100, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/packageclientes/atencion-al-cliente (3).png"))); // NOI18N
@@ -136,16 +125,6 @@ public class citaspantalla extends javax.swing.JPanel {
         content.repaint();
     }//GEN-LAST:event_btnConsultarActionPerformed
 
-    private void btnlistadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlistadoActionPerformed
-        ListadoCts p4=new ListadoCts();
-        p4.setSize(680,420);
-        p4.setLocation(0, 0);
-        content.removeAll();
-        content.add(p4,BorderLayout.CENTER);
-        content.revalidate();
-        content.repaint();
-    }//GEN-LAST:event_btnlistadoActionPerformed
-
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         EliminarCts p5=new EliminarCts();
         p5.setSize(680,420);
@@ -162,7 +141,6 @@ public class citaspantalla extends javax.swing.JPanel {
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JButton btnlistado;
     private javax.swing.JPanel content;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
