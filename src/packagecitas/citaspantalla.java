@@ -78,7 +78,7 @@ public class citaspantalla extends javax.swing.JPanel {
                 btnConsultarActionPerformed(evt);
             }
         });
-        add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 90, -1));
+        add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 100, -1));
 
         btnEliminar.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         btnEliminar.setText("Eliminar");

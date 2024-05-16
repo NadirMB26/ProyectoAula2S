@@ -73,7 +73,7 @@ public class mascotaspantalla extends javax.swing.JPanel {
                 btnConsultarActionPerformed(evt);
             }
         });
-        add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 90, -1));
+        add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 100, -1));
 
         btnEliminar.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         btnEliminar.setText("Eliminar");
@@ -82,7 +82,7 @@ public class mascotaspantalla extends javax.swing.JPanel {
                 btnEliminarActionPerformed(evt);
             }
         });
-        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 100, -1));
+        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, 100, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/packageclientes/atencion-al-cliente (3).png"))); // NOI18N

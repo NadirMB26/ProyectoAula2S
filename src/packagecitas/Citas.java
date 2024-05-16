@@ -1,82 +1,80 @@
 
 package packagecitas;
 
-import java.awt.Color;
-import javax.swing.JLabel;
-
 public class Citas {
     
     public packageclientes.Clientes cliente;
     
-    int IDmascota;
-    String nombreM;
-    String color;
-    String Tsangre;
-    String Tvida;
-    String especie;
+    String IDcita;
+    String CcCliente;
+    String Mascota;
+    String Hentrada;
+    String Hsalida;
+    String Fecha;
     
     public Citas() {
         
     }
     
-    public Citas(int IDmascota, String nombreM, String color, String Tsangre,String Tvida, String especie) {
-        this.IDmascota = IDmascota;
-        this.nombreM = nombreM;
-        this.color = color;
-        this.Tsangre = Tsangre;
-        this.especie = especie;
+    public Citas(String IDcita, String CcCliente, String Mascota, String Hentrada,String Hsalida, String Fecha) {
+        this.IDcita = IDcita;
+        this.CcCliente = CcCliente;
+        this.Mascota = Mascota;
+        this.Hentrada = Hentrada;
+        this.Hsalida = Hsalida;
+        this.Fecha=Fecha;
     }
 
-    public int getNdocument() {
-        return getNdocument();
-    }
-
-    public void setNdocumento(int Ndocumento) {
+    public String getIDcita() {
+        return IDcita;
     }
     
-    public int getIDmascota() {
-        return IDmascota;
-    }
-    
-    public void setIDmascota(int IDmascota) {
-        this.IDmascota = IDmascota;
+    public void setIDcita(String IDcita) {
+        this.IDcita = IDcita;
     }
 
-    public String getNombre() {
-        return nombreM;
+    public String getCcCliente() {
+        return CcCliente;
     }
 
-    public void setNombre(String nombre) {
-        this.nombreM = nombre;
+    public void setCcCliente(String CcCLiente) {
+        this.CcCliente = CcCliente;
     }
 
-    public String getColor() {
-        return color;
+    public String getMascota() {
+        return Mascota;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setMascota(String Mascota) {
+        this.Mascota = Mascota;
     }
 
-    public String getTsangre() {
-        return Tsangre;
+    public String getHentrada() {
+        return Hentrada;
     }
 
-    public void setTsangre(String Tsangre) {
-        this.Tsangre = Tsangre;
+    public void setTHentrada(String Hentrada) {
+        this.Hentrada= Hentrada;
     }
 
-    public String getEspecie() {
-        return especie;
+    public String getHsalida() {
+        return Hsalida;
     }
 
-    public void setEspecie(String especie) {
-        this.especie = especie;
+    public void setHsalida(String Hsalida) {
+        this.Hsalida = Hsalida;
+    }
+     public String getFecha() {
+        return Fecha;
+    }
+
+    public void setFecha(String Fecha) {
+        this.Fecha = Fecha;
     }
 
     @Override
     public String toString() {
-        return "Mascotas{" + "Ndocument=" + ", nombreM=" + nombreM + ", color=" + color + ", Tsangre=" + Tsangre + ", especie=" + especie + '}';
+        return "Citas{" + "IDcita="+IDcita + ",CcCliente=" + CcCliente + ",Mascota=" +Mascota + ", Hentrada=" + Hentrada+ ",Hsalida=" + Hsalida + ", Fecha=" +Fecha+'}';
     }
   
     

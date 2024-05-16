@@ -77,15 +77,9 @@ public class Clientes {
         return "Clientes{" + "ndocumento=" + ndocumento + ", apellido=" + apellido + ", nombre=" + nombre + ", direccion=" + direccion + ", correo=" + correo + ", telefono=" + telefono + '}';
     }
     
-    public static ArrayList<Clientes> clienteBD = new ArrayList<>();
 
-    public static ArrayList<Clientes> getCliente() {
-        return clienteBD;
-    }
 
-    public static void setCliente(ArrayList<Clientes> cliente) {
-        Clientes.clienteBD = cliente;
-    }
+ 
     
     
     
