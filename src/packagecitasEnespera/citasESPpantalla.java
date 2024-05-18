@@ -32,7 +32,6 @@ public class citasESPpantalla extends javax.swing.JPanel {
         btnActualizar = new javax.swing.JButton();
         btnConsultar = new javax.swing.JButton();
         btnlistado = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -51,13 +50,13 @@ public class citasESPpantalla extends javax.swing.JPanel {
         add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 730, 380));
 
         btnRegistrar.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        btnRegistrar.setText("Registrar");
+        btnRegistrar.setText("Confirmar Cita");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
             }
         });
-        add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
+        add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 120, -1));
 
         btnActualizar.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -66,34 +65,25 @@ public class citasESPpantalla extends javax.swing.JPanel {
                 btnActualizarActionPerformed(evt);
             }
         });
-        add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, -1, -1));
+        add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 120, -1));
 
         btnConsultar.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        btnConsultar.setText("Consultar");
+        btnConsultar.setText("En Espera");
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarActionPerformed(evt);
             }
         });
-        add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 90, -1));
+        add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 130, -1));
 
         btnlistado.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        btnlistado.setText("Listado");
+        btnlistado.setText("Citas Confirmadas");
         btnlistado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnlistadoActionPerformed(evt);
             }
         });
-        add(btnlistado, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 90, -1));
-
-        btnEliminar.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, 100, -1));
+        add(btnlistado, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, 150, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/packageclientes/atencion-al-cliente (3).png"))); // NOI18N
@@ -141,15 +131,10 @@ public class citasESPpantalla extends javax.swing.JPanel {
         content.repaint();
     }//GEN-LAST:event_btnlistadoActionPerformed
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-       
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnConsultar;
-    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnlistado;
     private javax.swing.JPanel content;

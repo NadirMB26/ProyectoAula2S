@@ -4,6 +4,9 @@
  */
 package packagecitasEnespera;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,8 +18,33 @@ public class CitasEnWait extends javax.swing.JPanel {
     DefaultTableModel modelo=new DefaultTableModel();
     public CitasEnWait() {
         initComponents();
-        
+        modelo.addColumn("No Cita");
+        modelo.addColumn("CCcliente");
+        modelo.addColumn("Mascota");
+        modelo.addColumn("Hr Entrada");
+        modelo.addColumn("Hr Salida");
+        modelo.addColumn("Fecha");
+        refrescarLista();
     }
+    
+    
+       
+    public void refrescarLista(){
+      tblCitasINwait.setModel(modelo);
+      File file = new File("citas.csv");
+        try {
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] parts = line.split(",");
+                modelo.addRow(parts);
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    
 
 
     @SuppressWarnings("unchecked")
@@ -29,11 +57,11 @@ public class CitasEnWait extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblusuarios2 = new javax.swing.JTable();
+        tblCitasINwait = new javax.swing.JTable();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/packageclientes/consulta.png"))); // NOI18N
-        jLabel1.setText("Consultar Citas");
+        jLabel1.setText("Citas En Espera");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel2.setText("id Mascota");
@@ -45,7 +73,7 @@ public class CitasEnWait extends javax.swing.JPanel {
             }
         });
 
-        tblusuarios2.setModel(new javax.swing.table.DefaultTableModel(
+        tblCitasINwait.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -56,7 +84,7 @@ public class CitasEnWait extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblusuarios2);
+        jScrollPane1.setViewportView(tblCitasINwait);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -118,6 +146,6 @@ public class CitasEnWait extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTable tblusuarios2;
+    private javax.swing.JTable tblCitasINwait;
     // End of variables declaration//GEN-END:variables
 }

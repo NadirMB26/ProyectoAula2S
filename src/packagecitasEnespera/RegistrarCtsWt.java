@@ -1,19 +1,23 @@
 
 package packagecitasEnespera;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import packagecitas.Citas;
 import packageclientes.Clientes;
 
 
-public class RegistrarCtsWt extends javax.swing.JPanel {  
- 
+public class RegistrarCtsWt extends javax.swing.JPanel { 
     public RegistrarCtsWt() {
         initComponents();
 
@@ -51,15 +55,20 @@ public class RegistrarCtsWt extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/packageclientes/registrar.png"))); // NOI18N
-        jLabel1.setText("Registrar Cita");
+        jLabel1.setText("Registrar Citas En Espera");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel2.setText("CC. cliente");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jLabel4.setText("fecha");
+        jLabel4.setText("Fecha De Cita");
 
         btnVaciar.setText("Vaciar");
+        btnVaciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVaciarActionPerformed(evt);
+            }
+        });
 
         btnConfCita.setText("Confirmar Cita");
         btnConfCita.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +93,10 @@ public class RegistrarCtsWt extends javax.swing.JPanel {
             }
         });
 
-        etiNoCT.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        etiNoCT.setFont(new java.awt.Font("Unispace", 1, 14)); // NOI18N
+        etiNoCT.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        etiNoCT.setToolTipText("");
+        etiNoCT.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel5.setText("No Cita");
@@ -94,15 +106,15 @@ public class RegistrarCtsWt extends javax.swing.JPanel {
         jLabel8.setText("Ingrese la CC Cliente");
         jLabel8.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        etiCedula.setText("jLabel10");
+        etiCedula.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        etiDate.setText("jLabel10");
+        etiDate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        etiMascota.setText("jLabel10");
+        etiMascota.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        etiHent.setText("jLabel10");
+        etiHent.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        etiHsal.setText("jLabel10");
+        etiHsal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         etiDester.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         etiDester.setText("Descripcion");
@@ -116,25 +128,44 @@ public class RegistrarCtsWt extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(67, 67, 67)
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(etiDate, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel6))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(6, 6, 6)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(12, 12, 12)
+                            .addComponent(txtBowserDC, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(6, 6, 6)
+                            .addComponent(btnbuscar))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGap(33, 33, 33)
+                            .addComponent(etiDester)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(btnVaciar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnConfCita)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(etiHent, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel9)
+                        .addGap(13, 13, 13)
+                        .addComponent(etiHsal, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(119, 119, 119)
                         .addComponent(jLabel5)
                         .addGap(6, 6, 6)
                         .addComponent(etiNoCT, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(txtBowserDC, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(btnbuscar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(jLabel2)
                         .addGap(6, 6, 6)
@@ -142,31 +173,17 @@ public class RegistrarCtsWt extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)
                         .addGap(14, 14, 14)
-                        .addComponent(etiMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel6))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(btnVaciar)
-                        .addGap(61, 61, 61)
-                        .addComponent(btnConfCita))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
+                        .addComponent(etiMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(etiDester)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(etiHent, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(21, 21, 21)
-                                .addComponent(jLabel9)
-                                .addGap(13, 13, 13)
-                                .addComponent(etiHsal, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap())
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(etiDate, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(54, 54, 54)))))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,17 +191,10 @@ public class RegistrarCtsWt extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(etiDate, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(etiNoCT, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(etiNoCT, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -193,36 +203,45 @@ public class RegistrarCtsWt extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(btnbuscar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addComponent(txtBowserDC, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etiCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etiMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
+                        .addGap(37, 37, 37)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))))
-                .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(etiCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(etiMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))))
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(etiHent, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jLabel9))
+                            .addComponent(etiHsal, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(53, 53, 53)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(etiDester)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(etiHent, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jLabel9))
-                    .addComponent(etiHsal, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etiDester))
-                .addGap(29, 29, 29)
-                .addComponent(jLabel6)
-                .addGap(37, 37, 37)
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(etiDate, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnVaciar)
-                    .addComponent(btnConfCita)))
+                    .addComponent(btnConfCita))
+                .addGap(19, 19, 19))
         );
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 380));
@@ -267,7 +286,7 @@ public class RegistrarCtsWt extends javax.swing.JPanel {
     }//GEN-LAST:event_btnbuscarActionPerformed
 
     private void btnConfCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfCitaActionPerformed
-          String idCita = etiNoCT.getText();
+        String idCita = etiNoCT.getText();
         String ccCliente = etiCedula.getText();
         String mascota = etiMascota.getText();
         String hEntrada = etiHent.getText();
@@ -276,14 +295,33 @@ public class RegistrarCtsWt extends javax.swing.JPanel {
         String descripcion = txtDescript.getText();
 
         // Confirmar actualización
-        if (JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea guardar los cambios?", 
-                "Confirmar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            Citas citaActualizada = new Citas(idCita, ccCliente, mascota, hEntrada, hSalida, fecha);
-            citaActualizada.setDescrip(txtDescript.getText());
-            citaActualizada.setConfCita("1");
-            guardaCtaUPD(citaActualizada);
+        int respuesta =JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea guardar los cambios?", 
+            "Confirmar", JOptionPane.YES_NO_OPTION); {
+            if (respuesta == JOptionPane.YES_OPTION) {
+           // Crear un nuevo objeto Citas con la información actualizada
+             Citas citaActualizada = new Citas(idCita, ccCliente, mascota, hEntrada, hSalida, fecha);
+             citaActualizada.setDescrip(descripcion);
+             citaActualizada.setConfCita("1");
+
+        try {
+          // Eliminar la cita original del archivo citas.csv
+            removeAppointmentFromOriginalFile(idCita);
+
+            // Guardar la cita actualizada en el nuevo archivo citasConf.csv
+            guardarCitaEnNuevoArchivo(citaActualizada);
+
+             // Mostrar mensaje de confirmación al usuario
+            JOptionPane.showMessageDialog(null, "Cita guardada exitosamente.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException ex) {
+             JOptionPane.showMessageDialog(null, "Error al guardar la cita: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+}
     }//GEN-LAST:event_btnConfCitaActionPerformed
+
+    private void btnVaciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaciarActionPerformed
+        setWhite();
+    }//GEN-LAST:event_btnVaciarActionPerformed
     
     private void populateJLabels(Citas cita) {
          if (cita != null) {
@@ -305,15 +343,15 @@ public class RegistrarCtsWt extends javax.swing.JPanel {
          }
     }
     
-    private void saveCita(Citas cita) {
-    try (FileWriter fw = new FileWriter("citas.csv", true)) {
-        fw.write(cita.toString() + "\n");
-    } catch (IOException ex) {
-        JOptionPane.showMessageDialog(null, "Error al guardar la cita: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
-    }
+//    private void saveCita(Citas cita) {
+//        try (FileWriter fw = new FileWriter("citas.csv", true)) {
+//            fw.write(cita.toString() + "\n");
+//        } catch (IOException ex) {
+//              JOptionPane.showMessageDialog(null, "Error al guardar la cita: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//        }
+//    }
     
-    private void guardaCtaUPD(Citas citaActualizada) {
+    private void guardrActlz(Citas citaActualizada) {
         try (BufferedReader br = new BufferedReader(new FileReader("citas.csv"))) {
             StringBuilder contenidoActualizadoArchivo = new StringBuilder();
             String linea;
@@ -330,7 +368,7 @@ public class RegistrarCtsWt extends javax.swing.JPanel {
             }
 
             // Escribir contenido actualizado en el archivo
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter("citas.csv"))) {
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter("citasConf.csv"))) {
                 bw.write(contenidoActualizadoArchivo.toString());
                 JOptionPane.showMessageDialog(null, "Cita guardada exitosamente.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -340,6 +378,40 @@ public class RegistrarCtsWt extends javax.swing.JPanel {
     
     
     }
+    private void guardarCitaEnNuevoArchivo(Citas cita) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("citasConf.csv", true))) {
+             bw.append(cita.toString() + "\n");
+            JOptionPane.showMessageDialog(null, "Cita confirmada exitosamente.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException ex) {
+               JOptionPane.showMessageDialog(null, "Error al guardar en citasConf.csv: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+   }
+    
+    private void removeAppointmentFromOriginalFile(String citaID) throws IOException {
+  BufferedReader br = new BufferedReader(new FileReader("citas.csv"));
+  BufferedWriter bw = new BufferedWriter(new FileWriter("citas_temp.csv")); // Temporary file
+  String line;
+
+  while ((line = br.readLine()) != null) {
+    String[] data = line.split(",");
+    if (!data[0].equals(citaID)) { // Skip the appointment to be removed
+      bw.write(line + "\n");
+    }
+  }
+
+  br.close();
+  bw.close();
+
+  // Replace original file with temporary file
+  File originalFile = new File("citas.csv");
+  File tempFile = new File("citas_temp.csv");
+  if (originalFile.delete()) {
+    tempFile.renameTo(originalFile);
+  } else {
+    System.out.println("Failed to delete original citas.csv");
+  }
+}
+    
 
     public void setWhite() {
         etiNoCT.setText("");

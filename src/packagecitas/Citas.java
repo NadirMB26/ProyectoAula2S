@@ -29,6 +29,10 @@ public class Citas {
         this.Descrip="";
     }
 
+    public Citas(int idCita, String ccCliente, String mascota, String hEntrada, String hSalida, String fecha, String descripcion) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public String getIDcita() {
         return IDcita;
     }
