@@ -381,7 +381,6 @@ public class RegistrarCtsWt extends javax.swing.JPanel {
     private void guardarCitaEnNuevoArchivo(Citas cita) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("citasConf.csv", true))) {
              bw.append(cita.toString() + "\n");
-            JOptionPane.showMessageDialog(null, "Cita confirmada exitosamente.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
                JOptionPane.showMessageDialog(null, "Error al guardar en citasConf.csv: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
