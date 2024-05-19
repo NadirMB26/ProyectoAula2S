@@ -44,14 +44,14 @@ public class citaspantalla extends javax.swing.JPanel {
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 730, Short.MAX_VALUE)
+            .addGap(0, 760, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 380, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
 
-        add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 730, 380));
+        add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 760, 400));
 
         btnRegistrar.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         btnRegistrar.setText("Registrar");

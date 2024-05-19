@@ -2,10 +2,13 @@
 package packageclientes;
 
 import java.awt.Rectangle;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -100,10 +103,20 @@ public class Actualizar extends javax.swing.JPanel {
                 txtnombreActionPerformed(evt);
             }
         });
+        txtnombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnombreKeyTyped(evt);
+            }
+        });
 
         txtapellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtapellidoActionPerformed(evt);
+            }
+        });
+        txtapellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtapellidoKeyTyped(evt);
             }
         });
 
@@ -158,6 +171,12 @@ public class Actualizar extends javax.swing.JPanel {
         Cbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CbuscarActionPerformed(evt);
+            }
+        });
+
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyTyped(evt);
             }
         });
 
@@ -296,29 +315,81 @@ public class Actualizar extends javax.swing.JPanel {
     }//GEN-LAST:event_txttelefonoActionPerformed
 
     private void CbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbuscarActionPerformed
-     int a=0;   
-        String searchTerm = txtCedula.getText().trim();
+
+String archivoCSV = "C:\\Users\\nadir\\OneDrive\\Documents\\NetBeansProjects\\ProyectoAula\\clientes.csv"; // Cambia esto al nombre de tu archivo CSV
+ int entrada=1;
+ modelo.setRowCount(0);
+ if(entrada==1){
+    refrescarLista(); 
+ }
+ String variableAComprobar = txtCedula.getText(); // Cambia esto al valor que deseas comprobar
+ String  activo="";
+        boolean existe = false;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(archivoCSV))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split(","); // Suponiendo que tu CSV está separado por comas
+
+                // Comparar el valor con la primera columna
+                if (datos.length > 0 && datos[0].equals(variableAComprobar)) {
+                    existe = true;
+                    break; // No es necesario seguir leyendo una vez que encontramos la variable
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (existe) {
+            String searchTerm = variableAComprobar;
+            activo=searchTerm;
             for (int i = 0; i < tblusuarios2.getRowCount(); i++) {
                 String documento = (String) tblusuarios2.getValueAt(i, 0);
                 if (documento.equals(searchTerm)) {
                     // Seleccionar la fila correspondiente si se encuentra la coincidencia
+                    modelo.setRowCount(0);
+                    File file = new File("clientes.csv");
+                    try {
+                        Scanner scanner = new Scanner(file);
+                        while (scanner.hasNextLine()) {
+                            String line = scanner.nextLine();
+                            String[] parts = line.split(",");
+                            if (parts[0].equals(searchTerm)) {
+                                modelo.addRow(parts);
+                            }
+                        }
+                        
+
+                        scanner.close();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                    break;
+                    
+                } else {
+
+                }
+            }
+        } else {
+
+ JOptionPane.showMessageDialog(this, "Cliente no registrado\n Actualizamos la lista por si tienes algun error");
+
+        }
+             for (int i = 0; i < tblusuarios2.getRowCount(); i++) {
+                String documento = (String) tblusuarios2.getValueAt(i, 0);
+                if (documento.equals(activo)) {
+                    // Seleccionar la fila correspondiente si se encuentra la coincidencia
                     tblusuarios2.setRowSelectionInterval(i, i);
                     // Hacer scroll a la fila seleccionada
                     tblusuarios2.scrollRectToVisible(new Rectangle(tblusuarios2.getCellRect(i, 0, true)));
-                    a=1;
                    
                     break;
-                } else{
-                   
                 }
-            }
-            if(a==1){
-                 JOptionPane.showMessageDialog(this,"Cliente encontrado y celeccionado");
-                
-            }else{
-              JOptionPane.showMessageDialog(null,"Cliente no encontrado");   
-            }
-
+        }
+   
+        
     }//GEN-LAST:event_CbuscarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -390,6 +461,25 @@ public class Actualizar extends javax.swing.JPanel {
        char c= evt.getKeyChar();
                 if(c<'0'|| c>'9')evt.consume();
     }//GEN-LAST:event_txttelefonoKeyTyped
+
+    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9')
+            evt.consume();
+
+    }//GEN-LAST:event_txtCedulaKeyTyped
+
+    private void txtnombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyTyped
+           char c = evt.getKeyChar();
+        if ((c < 'a' || c > 'z') && (c < 'A') | c > 'Z')
+            evt.consume();
+    }//GEN-LAST:event_txtnombreKeyTyped
+
+    private void txtapellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoKeyTyped
+              char c = evt.getKeyChar();
+        if ((c < 'a' || c > 'z') && (c < 'A') | c > 'Z')
+            evt.consume();
+    }//GEN-LAST:event_txtapellidoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

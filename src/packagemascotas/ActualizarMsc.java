@@ -2,10 +2,13 @@
 package packagemascotas;
 
 import java.awt.Rectangle;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -69,7 +72,6 @@ public class ActualizarMsc extends javax.swing.JPanel {
         cc = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/packageclientes/captcha (1).png"))); // NOI18N
@@ -111,6 +113,12 @@ public class ActualizarMsc extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel5.setText("T sangre");
 
+        txtTsangre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTsangreKeyTyped(evt);
+            }
+        });
+
         jLabel6.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel6.setText("Edad");
 
@@ -141,6 +149,12 @@ public class ActualizarMsc extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblusuarios2);
 
+        txtEspecie.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEspecieKeyTyped(evt);
+            }
+        });
+
         jLabel8.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel8.setText("Cc.cliente");
 
@@ -151,11 +165,14 @@ public class ActualizarMsc extends javax.swing.JPanel {
                 txtCedulaActionPerformed(evt);
             }
         });
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyTyped(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel9.setText("Digita la Cedula del cliente");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -204,10 +221,6 @@ public class ActualizarMsc extends javax.swing.JPanel {
                                         .addComponent(btnVaciar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(35, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(215, 215, 215))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,9 +238,9 @@ public class ActualizarMsc extends javax.swing.JPanel {
                 .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(cc, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cc, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
@@ -249,9 +262,7 @@ public class ActualizarMsc extends javax.swing.JPanel {
                             .addComponent(btnActualizar)
                             .addComponent(btnVaciar)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -275,30 +286,68 @@ public class ActualizarMsc extends javax.swing.JPanel {
     }//GEN-LAST:event_txtColorActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-    int a=0;   
-        String searchTerm = txtCedula.getText().trim();
+
+ String archivoCSV = "C:\\Users\\nadir\\OneDrive\\Documents\\NetBeansProjects\\ProyectoAula\\clientes.csv"; // Cambia esto al nombre de tu archivo CSV
+ int entrada=1;
+ modelo.setRowCount(0);
+ if(entrada==1){
+    refrescarLista(); 
+ }
+ String variableAComprobar = txtCedula.getText(); // Cambia esto al valor que deseas comprobar
+        boolean existe = false;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(archivoCSV))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split(","); // Suponiendo que tu CSV está separado por comas
+
+                // Comparar el valor con la primera columna
+                if (datos.length > 0 && datos[0].equals(variableAComprobar)) {
+                    existe = true;
+                    break; // No es necesario seguir leyendo una vez que encontramos la variable
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (existe) {
+            String searchTerm = variableAComprobar;
             for (int i = 0; i < tblusuarios2.getRowCount(); i++) {
                 String documento = (String) tblusuarios2.getValueAt(i, 0);
                 if (documento.equals(searchTerm)) {
                     // Seleccionar la fila correspondiente si se encuentra la coincidencia
-                    tblusuarios2.setRowSelectionInterval(i, i);
-                    // Hacer scroll a la fila seleccionada
-                    tblusuarios2.scrollRectToVisible(new Rectangle(tblusuarios2.getCellRect(i, 0, true)));
-                    a=1;
-                   
-                   
+                    modelo.setRowCount(0);
+                    File file = new File("mascotas.csv");
+                    try {
+                        Scanner scanner = new Scanner(file);
+                        while (scanner.hasNextLine()) {
+                            String line = scanner.nextLine();
+                            String[] parts = line.split(",");
+                            if (parts[0].equals(searchTerm)) {
+                                modelo.addRow(parts);
+                            }
+                        }
+                        
+
+                        scanner.close();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
                     break;
-                } else{
-                   
+                    
+                } else {
+
                 }
             }
-            if(a==1){
-                 JOptionPane.showMessageDialog(this,"Cliente encontrado y celeccionado");
+        } else {
+
+ JOptionPane.showMessageDialog(this, "Cliente no registrado\n Actualizamos la lista por si tienes algun error");
+
+        }
+
                 
-            }else{
-              JOptionPane.showMessageDialog(null,"Cliente no encontrado");   
-            }
-                   
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
@@ -382,13 +431,31 @@ public class ActualizarMsc extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCedulaActionPerformed
 
+    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
+       char c = evt.getKeyChar();
+        if (c < '0' || c > '9')
+            evt.consume();
+
+    }//GEN-LAST:event_txtCedulaKeyTyped
+
+    private void txtEspecieKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEspecieKeyTyped
+         char c = evt.getKeyChar();
+        if ((c < 'a' || c > 'z') && (c < 'A') | c > 'Z')
+            evt.consume();
+    }//GEN-LAST:event_txtEspecieKeyTyped
+
+    private void txtTsangreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTsangreKeyTyped
+         char c = evt.getKeyChar();
+        if ((c < 'a' || c > 'z') && (c < 'A') | c > 'Z')
+            evt.consume();
+    }//GEN-LAST:event_txtTsangreKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnVaciar;
     private javax.swing.JLabel cc;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

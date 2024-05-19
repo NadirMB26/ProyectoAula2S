@@ -2,10 +2,13 @@
 package packageclientes;
 
 import java.awt.Rectangle;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -181,28 +184,78 @@ DefaultTableModel modelo=new DefaultTableModel();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnbuscarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarEActionPerformed
-        int a=0;   
-        String searchTerm = txtCedula.getText().trim();
+       String archivoCSV = "C:\\Users\\nadir\\OneDrive\\Documents\\NetBeansProjects\\ProyectoAula\\clientes.csv"; // Cambia esto al nombre de tu archivo CSV
+ int entrada=1;
+ modelo.setRowCount(0);
+ if(entrada==1){
+    refrescarLista(); 
+ }
+ String variableAComprobar = txtCedula.getText(); // Cambia esto al valor que deseas comprobar
+ String  activo="";
+        boolean existe = false;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(archivoCSV))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split(","); // Suponiendo que tu CSV está separado por comas
+
+                // Comparar el valor con la primera columna
+                if (datos.length > 0 && datos[0].equals(variableAComprobar)) {
+                    existe = true;
+                    break; // No es necesario seguir leyendo una vez que encontramos la variable
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (existe) {
+            String searchTerm = variableAComprobar;
+            activo=searchTerm;
             for (int i = 0; i < tblusuarios3.getRowCount(); i++) {
                 String documento = (String) tblusuarios3.getValueAt(i, 0);
                 if (documento.equals(searchTerm)) {
                     // Seleccionar la fila correspondiente si se encuentra la coincidencia
+                    modelo.setRowCount(0);
+                    File file = new File("clientes.csv");
+                    try {
+                        Scanner scanner = new Scanner(file);
+                        while (scanner.hasNextLine()) {
+                            String line = scanner.nextLine();
+                            String[] parts = line.split(",");
+                            if (parts[0].equals(searchTerm)) {
+                                modelo.addRow(parts);
+                            }
+                        }
+                        
+
+                        scanner.close();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                    break;
+                    
+                } else {
+
+                }
+            }
+        } else {
+
+ JOptionPane.showMessageDialog(this, "Cliente no registrado\n Actualizamos la lista por si tienes algun error");
+
+        }
+             for (int i = 0; i < tblusuarios3.getRowCount(); i++) {
+                String documento = (String) tblusuarios3.getValueAt(i, 0);
+                if (documento.equals(activo)) {
+                    // Seleccionar la fila correspondiente si se encuentra la coincidencia
                     tblusuarios3.setRowSelectionInterval(i, i);
                     // Hacer scroll a la fila seleccionada
                     tblusuarios3.scrollRectToVisible(new Rectangle(tblusuarios3.getCellRect(i, 0, true)));
-                    a=1;
                    
                     break;
-                } else{
-                   
                 }
-            }
-            if(a==1){
-                 JOptionPane.showMessageDialog(this,"Cliente encontrado y celeccionado");
-                
-            }else{
-              JOptionPane.showMessageDialog(null,"Cliente no encontrado");   
-            }
+        }
     }//GEN-LAST:event_btnbuscarEActionPerformed
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
