@@ -11,18 +11,26 @@ public class Citas {
     String Hentrada;
     String Hsalida;
     String Fecha;
-    
+    String ConfCita;
+    String Descrip;
     public Citas() {
         
     }
     
-    public Citas(String IDcita, String CcCliente, String Mascota, String Hentrada,String Hsalida, String Fecha) {
+    public Citas(String IDcita, String CcCliente, String Mascota, String Hentrada, String Hsalida, String Fecha) {
         this.IDcita = IDcita;
         this.CcCliente = CcCliente;
         this.Mascota = Mascota;
         this.Hentrada = Hentrada;
         this.Hsalida = Hsalida;
         this.Fecha=Fecha;
+        this.CcCliente=CcCliente;
+        this.ConfCita="0";
+        this.Descrip="";
+    }
+
+    public Citas(int idCita, String ccCliente, String mascota, String hEntrada, String hSalida, String fecha, String descripcion) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public String getIDcita() {
@@ -71,10 +79,26 @@ public class Citas {
     public void setFecha(String Fecha) {
         this.Fecha = Fecha;
     }
+    
+    public String getConfCita() {
+        return ConfCita;
+    }
+
+    public void setConfCita(String ConfCita) {
+        this.ConfCita = ConfCita;
+    }
+    
+    public String getDescrip() {
+        return Descrip;
+    }
+
+    public void setDescrip(String Descrip) {
+        this.Descrip = Descrip;
+    }
 
     @Override
     public String toString() {
-        return "Citas{" + "IDcita="+IDcita + ",CcCliente=" + CcCliente + ",Mascota=" +Mascota + ", Hentrada=" + Hentrada+ ",Hsalida=" + Hsalida + ", Fecha=" +Fecha+'}';
+        return "Citas{" + "IDcita="+IDcita + ",CcCliente=" + CcCliente + ",Mascota=" +Mascota + ", Hentrada=" + Hentrada+ ",Hsalida=" + Hsalida + ", Fecha=" +Fecha+ ",ConfCita=" +ConfCita+",Descrip=" + Descrip +  '}';
     }
   
     

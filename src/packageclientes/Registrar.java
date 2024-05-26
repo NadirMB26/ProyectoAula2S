@@ -187,8 +187,38 @@ public class Registrar extends javax.swing.JPanel {
         cliente.direccion = txtDireccion.getText().trim();
         cliente.correo = txtCorreo.getText().trim();
         cliente.telefono = txtTelefono.getText().trim();
-    
-        String archivoCSV = "C:\\Users\\nadir\\OneDrive\\Documents\\NetBeansProjects\\ProyectoAula\\clientes.csv"; // Cambia esto al nombre de tu archivo CSV
+    int validacion=0;
+        
+        
+        if (txtNumeroDocumento.getText().equals("")) {
+            validacion++;
+        }
+        if (txtApellido.getText().equals("")) {
+           validacion++;
+        }
+
+        if (txtNombre.getText().equals("")) {
+           validacion++;
+        }
+
+        if (txtDireccion.getText().equals("")) {
+            validacion++;
+        }
+
+        if (txtCorreo.getText().equals("")) {
+           validacion++;
+        }
+
+        if (txtTelefono.getText().equals("")) {
+            validacion++;
+        }
+
+        if (validacion != 0) {
+            JOptionPane.showMessageDialog(null, "Se deben completar todos los campos");
+            
+        
+        }else{
+            String archivoCSV = "clientes.csv"; // Cambia esto al nombre de tu archivo CSV
         String variableAComprobar = cliente.ndocumento; // Cambia esto al valor que deseas comprobar
 
         boolean existe = false;
@@ -228,6 +258,7 @@ public class Registrar extends javax.swing.JPanel {
                 System.err.println("Error al guardar los datos: " + ex.getMessage());
             }
 
+        }
         }
     }//GEN-LAST:event_btnGuardarRclienteActionPerformed
 

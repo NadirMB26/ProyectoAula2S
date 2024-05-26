@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import metodos.Metodos;
 
 public class ActualizarMsc extends javax.swing.JPanel {
 
@@ -160,12 +161,10 @@ public class ActualizarMsc extends javax.swing.JPanel {
 
         cc.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        txtCedula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCedulaActionPerformed(evt);
-            }
-        });
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCedulaKeyTyped(evt);
             }
@@ -287,7 +286,7 @@ public class ActualizarMsc extends javax.swing.JPanel {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
 
- String archivoCSV = "C:\\Users\\nadir\\OneDrive\\Documents\\NetBeansProjects\\ProyectoAula\\clientes.csv"; // Cambia esto al nombre de tu archivo CSV
+ String archivoCSV = "clientes.csv"; // Cambia esto al nombre de tu archivo CSV
  int entrada=1;
  modelo.setRowCount(0);
  if(entrada==1){
@@ -427,10 +426,13 @@ public class ActualizarMsc extends javax.swing.JPanel {
         filas = seleccion;
     }//GEN-LAST:event_tblusuarios2MouseClicked
 
-    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulaActionPerformed
-
+    public void buscarMascota(String buscar){
+        Metodos metodo = new Metodos();
+        
+        DefaultTableModel modelo = metodo.buscarMascotas(buscar);
+        tblusuarios2.setModel(modelo);
+    }
+    
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
        char c = evt.getKeyChar();
         if (c < '0' || c > '9')
@@ -449,6 +451,10 @@ public class ActualizarMsc extends javax.swing.JPanel {
         if ((c < 'a' || c > 'z') && (c < 'A') | c > 'Z')
             evt.consume();
     }//GEN-LAST:event_txtTsangreKeyTyped
+
+    private void txtCedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyReleased
+        buscarMascota(txtCedula.getText());
+    }//GEN-LAST:event_txtCedulaKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import metodos.Metodos;
 
 
 public class Actualizar extends javax.swing.JPanel {
@@ -175,6 +176,9 @@ public class Actualizar extends javax.swing.JPanel {
         });
 
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCedulaKeyTyped(evt);
             }
@@ -316,7 +320,7 @@ public class Actualizar extends javax.swing.JPanel {
 
     private void CbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbuscarActionPerformed
 
-String archivoCSV = "C:\\Users\\nadir\\OneDrive\\Documents\\NetBeansProjects\\ProyectoAula\\clientes.csv"; // Cambia esto al nombre de tu archivo CSV
+String archivoCSV = "clientes.csv"; // Cambia esto al nombre de tu archivo CSV
  int entrada=1;
  modelo.setRowCount(0);
  if(entrada==1){
@@ -457,6 +461,13 @@ String archivoCSV = "C:\\Users\\nadir\\OneDrive\\Documents\\NetBeansProjects\\Pr
 
     }//GEN-LAST:event_tblusuarios2MouseClicked
 
+    public void buscarCliente(String buscar){
+        Metodos metodo = new Metodos();
+        
+        DefaultTableModel modelo = metodo.buscarClientes(buscar);
+        tblusuarios2.setModel(modelo);
+    }
+    
     private void txttelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyTyped
        char c= evt.getKeyChar();
                 if(c<'0'|| c>'9')evt.consume();
@@ -480,6 +491,10 @@ String archivoCSV = "C:\\Users\\nadir\\OneDrive\\Documents\\NetBeansProjects\\Pr
         if ((c < 'a' || c > 'z') && (c < 'A') | c > 'Z')
             evt.consume();
     }//GEN-LAST:event_txtapellidoKeyTyped
+
+    private void txtCedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyReleased
+        buscarCliente(txtCedula.getText());
+    }//GEN-LAST:event_txtCedulaKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

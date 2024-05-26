@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import metodos.Metodos;
 
 public class EliminarMsc extends javax.swing.JPanel {
 DefaultTableModel modelo=new DefaultTableModel();
@@ -98,6 +99,9 @@ refrescarLista();
         btnRegresar.setText("Vaciar");
 
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCedulaKeyTyped(evt);
             }
@@ -166,7 +170,7 @@ refrescarLista();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
- String archivoCSV = "C:\\Users\\nadir\\OneDrive\\Documents\\NetBeansProjects\\ProyectoAula\\clientes.csv"; // Cambia esto al nombre de tu archivo CSV
+ String archivoCSV = "clientes.csv"; // Cambia esto al nombre de tu archivo CSV
  int entrada=1;
  modelo.setRowCount(0);
  if(entrada==1){
@@ -258,11 +262,22 @@ refrescarLista();
 
     }//GEN-LAST:event_btnElimActionPerformed
 
+    public void buscarMascota(String buscar){
+        Metodos metodo = new Metodos();
+        
+        DefaultTableModel modelo = metodo.buscarMascotas(buscar);
+        tblusuarios2.setModel(modelo);
+    }
+    
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
            char c = evt.getKeyChar();
         if (c < '0' || c > '9')
             evt.consume();
     }//GEN-LAST:event_txtCedulaKeyTyped
+
+    private void txtCedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyReleased
+        buscarMascota(txtCedula.getText());
+    }//GEN-LAST:event_txtCedulaKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,5 +1,5 @@
-
 package packagecitas;
+
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,24 +9,27 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import packageclientes.Clientes;
 
+public class RegistrarCts extends javax.swing.JPanel {
 
-public class RegistrarCts extends javax.swing.JPanel {  
- 
     public RegistrarCts() {
         initComponents();
         cregistro();
     }
-    public void cregistro(){
-  
-         String archivoTexto = "C:\\Users\\nadir\\OneDrive\\Documents\\NetBeansProjects\\ProyectoAula\\citas.csv"; // Ruta al archivo de texto
+
+    public void cregistro() {
+
+        String archivoTexto = "citas.csv"; // Ruta al archivo de texto
 
         try (BufferedReader br = new BufferedReader(new FileReader(archivoTexto))) {
             String linea;
             int ultimoNumeroDeCita = 0;
-            
+
             while ((linea = br.readLine()) != null) {
                 // Parsea la línea para obtener el número de cita (supongamos que está en la primera posición)
                 String[] partes = linea.split(",");
@@ -47,14 +50,10 @@ public class RegistrarCts extends javax.swing.JPanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
     }
-        
-        
-   
 
 
- 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -293,84 +292,132 @@ public class RegistrarCts extends javax.swing.JPanel {
     }//GEN-LAST:event_btnVaciarActionPerformed
 
     private void btnGuardarcitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarcitaActionPerformed
-     
+
         Citas cita = new Citas();
-        cita.IDcita =txtCita.getText();
+        cita.IDcita = txtCita.getText();
         cita.CcCliente = txtCedula.getText().trim();
-        cita.Mascota = ""+comboBoxMascotas.getSelectedItem();
+        cita.Mascota = "" + comboBoxMascotas.getSelectedItem();
         cita.Hentrada = txt1.getText().trim();
         cita.Hsalida = txt.getText().trim();
-        cita.Fecha = txtfecha.getText().trim(); 
-        
-        String archivoTexto = "citas.csv"; // Ruta al archivo de texto
-    
-        try (BufferedReader br = new BufferedReader(new FileReader(archivoTexto))) {
-            LocalTime horaEntradaNuevaCita =  LocalTime.parse(cita.Hentrada, DateTimeFormatter.ofPattern("hh:mm a")); // Ejemplo: 10:00 AM
-            LocalTime horaSalidaNuevaCita = LocalTime.parse(cita.Hsalida, DateTimeFormatter.ofPattern("hh:mm a")); // Ejemplo: 11:30 AM
-         
-             boolean superposicion = false;
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                String[] partes = linea.split(",");
-                LocalTime horaEntradaExistente = LocalTime.parse(partes[3], DateTimeFormatter.ofPattern("hh:mm a"));
-                LocalTime horaSalidaExistente = LocalTime.parse(partes[4], DateTimeFormatter.ofPattern("hh:mm a"));
+        cita.Fecha = txtfecha.getText().trim();
 
-                if (horaEntradaNuevaCita.isAfter(horaEntradaExistente)
-                        && horaEntradaNuevaCita.isBefore(horaSalidaExistente)
-                        || horaSalidaNuevaCita.isAfter(horaEntradaExistente)
-                        && horaSalidaNuevaCita.isBefore(horaSalidaExistente)) {
-                    superposicion = true;
-                    break;
+        if (cita.CcCliente.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingresa tu Cedula");
+        } else {
+            String archivoCSV = "clientes.csv"; // Cambia esto al nombre de tu archivo CSV
+            String variableAComprobar = cita.CcCliente; // Cambia esto al valor que deseas comprobar
+
+            boolean existe = false;
+
+            try (BufferedReader br = new BufferedReader(new FileReader(archivoCSV))) {
+                String linea;
+                while ((linea = br.readLine()) != null) {
+                    String[] datos = linea.split(","); // Suponiendo que tu CSV está separado por comas
+
+                    // Comparar el valor con la primera columna
+                    if (datos.length > 0 && datos[0].equals(variableAComprobar)) {
+                        existe = true;
+                        break; // No es necesario seguir leyendo una vez que encontramos la variable
+                    }
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
-            if (superposicion) {
-                JOptionPane.showMessageDialog(null,"La nueva cita se superpone con una cita existente. No se puede programar.");
-            } else {
-                JOptionPane.showMessageDialog(null, "La nueva cita puede programarse sin superposición.");
-                 try {
-                PrintWriter writer = new PrintWriter(new FileWriter("citas.csv", true));
-                // Escribir los datos en formato CSV
-                writer.printf("%s,%s,%s,%s,%s,%s%n",
-                        cita.IDcita,
-                        cita.CcCliente,
-                        cita.Mascota,
-                        cita.Hentrada,
-                        cita.Hsalida,
-                        cita.Fecha);
-                writer.close();
-                JOptionPane.showMessageDialog(null, "Datos guardados correctamente.");
-                System.out.println("Datos guardados correctamente.");
-            } catch (IOException ex) {
-                System.err.println("Error al guardar los datos: " + ex.getMessage());
-            }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
-        
-        
-  
-        
-
-
-       
-           
-          
+            if (existe) {
             
+
+            if (!existeCitaCruzada(cita)) {
+//                if (esHoraValida(cita.Hentrada, cita.Hsalida)) {
+                    try {
+                        PrintWriter writer = new PrintWriter(new FileWriter("citas.csv", true));
+                        writer.printf("%s,%s,%s,%s,%s,%s%n",
+                                cita.IDcita,
+                                cita.CcCliente,
+                                cita.Mascota,
+                                cita.Hentrada,
+                                cita.Hsalida,
+                                cita.Fecha);
+                        writer.close();
+                        JOptionPane.showMessageDialog(null, "Datos guardados correctamente.");
+                    } catch (IOException ex) {
+                        JOptionPane.showMessageDialog(null, "Error al guardar los datos: " + ex.getMessage());
+                    }
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "La hora de entrada debe ser menor que la hora de salida.");
+//                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Existe una cita que se cruza en el mismo día y hora.");
+            }
+            
+    }else{
+                JOptionPane.showMessageDialog(this,"Cliente no registrado");
+            }
+        }
+
+
     }//GEN-LAST:event_btnGuardarcitaActionPerformed
 
+    public static boolean esHoraValida(String entrada, String salida) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
+
+        try {
+            LocalTime horaEntrada = LocalTime.parse(entrada, formatter);
+            LocalTime horaSalida = LocalTime.parse(salida, formatter);
+
+            return horaEntrada.isBefore(horaSalida);
+        } catch (DateTimeParseException e) {
+            System.out.println("Formato de hora no válido: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public static boolean existeCitaCruzada(Citas cita) {
+        List<Citas> citasExistentes = leerCitasDesdeCSV("citas.csv");
+
+        for (Citas cita2 : citasExistentes) {
+            if (cita.Fecha.equals(cita2.Fecha)) {
+                if ((cita.Hentrada.compareTo(cita2.Hentrada) >= 0 && cita.Hentrada.compareTo(cita2.Hsalida) < 0)
+                        || (cita.Hsalida.compareTo(cita2.Hentrada) > 0 && cita.Hsalida.compareTo(cita2.Hsalida) <= 0)
+                        || (cita.Hentrada.compareTo(cita2.Hentrada) <= 0 && cita.Hsalida.compareTo(cita2.Hsalida) >= 0)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static List<Citas> leerCitasDesdeCSV(String nombreArchivo) {
+        List<Citas> citas = new ArrayList<>();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(nombreArchivo));
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] campos = linea.split(",");
+                if (campos.length == 6) {
+                    Citas cita = new Citas(campos[0], campos[1], campos[2], campos[3], campos[4], campos[5]);
+                    citas.add(cita);
+                }
+            }
+            br.close();
+        } catch (IOException e) {
+            System.err.println("Error al leer el archivo: " + e.getMessage());
+        }
+        return citas;
+    }
+
+
     private void btnEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEActionPerformed
-      timePicker1.showPopup(this,350,105);
+        timePicker1.showPopup(this, 350, 105);
     }//GEN-LAST:event_btnEActionPerformed
 
     private void btnsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsActionPerformed
-        timePicker2.showPopup(this,350,105);
+        timePicker2.showPopup(this, 350, 105);
     }//GEN-LAST:event_btnsActionPerformed
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
-      String archivoCSV = "C:\\Users\\nadir\\OneDrive\\Documents\\NetBeansProjects\\ProyectoAula\\mascotas.csv"; // Cambia esto al nombre de tu archivo CSV
+        String archivoCSV = "mascotas.csv"; // Cambia esto al nombre de tu archivo C
         String variableAComprobar = txtCedula.getText(); // Cambia esto al valor que deseas comprobar
 
         boolean existe = false;
@@ -390,57 +437,56 @@ public class RegistrarCts extends javax.swing.JPanel {
             e.printStackTrace();
         }
 
-        if (existe) { 
-            
-        comboBoxMascotas.removeAllItems();
-        try {
-    BufferedReader reader = new BufferedReader(new FileReader("mascotas.csv"));
-    String linea;
-    while ((linea = reader.readLine()) != null) {
-        String[] partes = linea.split(",");
-        String cedula = partes[0];
-        String nombreMascota = partes[1]; // El nombre de la mascota está en la posición 1
-        if (cedula.equals(variableAComprobar)) {
-        comboBoxMascotas.addItem(nombreMascota); // Agrega el nombre al combobox
-        }
-    }
-    reader.close();
-} catch (IOException e) {
-    e.printStackTrace();
-}
-                
+        if (existe) {
+
+            comboBoxMascotas.removeAllItems();
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader("mascotas.csv"));
+                String linea;
+                while ((linea = reader.readLine()) != null) {
+                    String[] partes = linea.split(",");
+                    String cedula = partes[0];
+                    String nombreMascota = partes[1]; // El nombre de la mascota está en la posición 1
+                    if (cedula.equals(variableAComprobar)) {
+                        comboBoxMascotas.addItem(nombreMascota); // Agrega el nombre al combobox
+                    }
+                }
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         } else {
-    
-            JOptionPane.showMessageDialog(this,"Cliente no registrado");
+
+            JOptionPane.showMessageDialog(this, "Cliente no registrado");
 
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_btnbuscarActionPerformed
 
     private void comboBoxMascotasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxMascotasMouseClicked
-     comboBoxMascotas.addActionListener(e -> {
-    String mascotaSeleccionada = (String) comboBoxMascotas.getSelectedItem();
-    // Aquí puedes realizar acciones según la mascota seleccionada
-    // Por ejemplo, mostrar detalles de la mascota en otro componente o realizar alguna operación.
-});
+        comboBoxMascotas.addActionListener(e -> {
+            String mascotaSeleccionada = (String) comboBoxMascotas.getSelectedItem();
+            // Aquí puedes realizar acciones según la mascota seleccionada
+            // Por ejemplo, mostrar detalles de la mascota en otro componente o realizar alguna operación.
+        });
     }//GEN-LAST:event_comboBoxMascotasMouseClicked
 
     private void btnfechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfechaActionPerformed
-       dateChooser1.showPopup();
+        dateChooser1.showPopup();
     }//GEN-LAST:event_btnfechaActionPerformed
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
-           char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if (c < '0' || c > '9')
             evt.consume();
     }//GEN-LAST:event_txtCedulaKeyTyped
-     public void setWhite() {
+    public void setWhite() {
         txtCedula.setBackground(Color.WHITE);
         txt.setBackground(Color.WHITE);
         txt1.setBackground(Color.WHITE);
-     
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

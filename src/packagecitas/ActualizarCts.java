@@ -1,14 +1,17 @@
 
-package packagemascotas;
+package packagecitas;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import metodos.Metodos;
 
 
 public class ActualizarCts extends javax.swing.JPanel {
@@ -92,6 +95,11 @@ public class ActualizarCts extends javax.swing.JPanel {
         jLabel4.setText("Cliente");
 
         jButton1.setText("Actualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Limpiar");
 
@@ -99,6 +107,12 @@ public class ActualizarCts extends javax.swing.JPanel {
         btnbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnbuscarActionPerformed(evt);
+            }
+        });
+
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyReleased(evt);
             }
         });
 
@@ -381,6 +395,67 @@ public class ActualizarCts extends javax.swing.JPanel {
     private void btnentradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnentradaActionPerformed
         timePicker1.showPopup(this,350,100);
     }//GEN-LAST:event_btnentradaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       int a = JOptionPane.showConfirmDialog(this, "Deseas actualizar esta Cita?");
+        if (a == 0) {
+            String[] datos = new String[6];
+            datos[0] = txtn.getText();
+            datos[1] = txtC.getText();
+            datos[2] = txtM.getText();
+            datos[3] = txtentrada.getText();
+            datos[4] = txtsalida.getText();
+            datos[5] = txtfecha.getText();
+            if (datos[0].isEmpty() && datos[1].isEmpty() && datos[2].isEmpty() && datos[3].isEmpty() && datos[4].isEmpty() && datos[5].isEmpty() || datos[0].isEmpty() || datos[1].isEmpty() || datos[2].isEmpty() || datos[3].isEmpty() || datos[4].isEmpty() || datos[5].isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Datos insuficientes");
+            } else {
+                for (int k = 0; k < tblusuarios2.getColumnCount(); k++) {
+                    tblusuarios2.setValueAt(datos[k], filas, k);
+                }
+                try {
+                    String archivo = "citas.csv";
+                    BufferedWriter bw = new BufferedWriter(new FileWriter(archivo));
+                    for (int i = 0; i < tblusuarios2.getRowCount(); i++) {
+                        for (int j = 0; j < tblusuarios2.getColumnCount(); j++) {
+
+                            bw.write((String) (tblusuarios2.getValueAt(i, j)));
+                            if (j < tblusuarios2.getColumnCount() - 1) {
+                                bw.write(",");
+                            }
+                        }
+                        bw.newLine();
+
+                    }
+                    bw.close();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
+                }
+                JOptionPane.showMessageDialog(null, "Registro Actualizado");
+                txtn.setText("");
+                txtC.setText("");
+                txtM.setText("");
+                txtentrada.setText("");
+                txtsalida.setText("");
+                txtfecha.setText("");
+            }
+        } else if (a == 1) {
+
+            JOptionPane.showMessageDialog(this, "Este cliente no se actualizo");
+        } else {
+            JOptionPane.showMessageDialog(this, "Cancelaste la operacion");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void buscarCita(String buscar){
+        Metodos metodo = new Metodos();
+        
+        DefaultTableModel modelo = metodo.buscarCitas(buscar);        
+        tblusuarios2.setModel(modelo);
+    }
+    
+    private void txtCedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyReleased
+        buscarCita(txtCedula.getText());
+    }//GEN-LAST:event_txtCedulaKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

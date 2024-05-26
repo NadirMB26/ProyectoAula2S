@@ -4,7 +4,9 @@ package Principal;
 
 import java.awt.BorderLayout;
 import java.util.*;
+import javax.swing.ImageIcon;
 import packagecitas.citaspantalla;
+import packagecitasEnespera.citasESPpantalla;
 import packagemascotas.mascotaspantalla;
 import packagemascotas.pantallamascotas;
 
@@ -12,14 +14,17 @@ public class Principal extends javax.swing.JFrame implements Runnable {
     String hora,minutos,segundos,ampm;
     Calendar calendrio;
     Thread hi;
+
     public Principal() {
-        initComponents();
+        initComponents();    
         this.setLocationRelativeTo(null);
         hi=new Thread(this);
         hi.start();
         setVisible(true);
+        
     }
 public void run(){
+    
 Thread ct=Thread.currentThread();
 while(ct==hi){
 calcula();
@@ -54,6 +59,11 @@ try{
         btnCE.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnCE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Principal/calendario.png"))); // NOI18N
         btnCE.setText("Citas en Espera");
+        btnCE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCEActionPerformed(evt);
+            }
+        });
 
         btnGTC.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         btnGTC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Principal/cronograma.png"))); // NOI18N
@@ -139,6 +149,8 @@ try{
                 .addGap(21, 21, 21))
         );
 
+        contentp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         javax.swing.GroupLayout contentpLayout = new javax.swing.GroupLayout(contentp);
         contentp.setLayout(contentpLayout);
         contentpLayout.setHorizontalGroup(
@@ -147,7 +159,7 @@ try{
         );
         contentpLayout.setVerticalGroup(
             contentpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 488, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -200,6 +212,16 @@ try{
         contentp.revalidate();
         contentp.repaint();
     }//GEN-LAST:event_btnGTCActionPerformed
+
+    private void btnCEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCEActionPerformed
+       citasESPpantalla p3=new citasESPpantalla();
+        p3.setSize(980,520);
+        p3.setLocation(0, 0);
+        contentp.removeAll();
+        contentp.add(p3,BorderLayout.CENTER);
+        contentp.revalidate();
+        contentp.repaint();
+    }//GEN-LAST:event_btnCEActionPerformed
 
     public static void main(String args[]) {
 

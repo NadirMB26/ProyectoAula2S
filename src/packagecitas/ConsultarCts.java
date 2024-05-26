@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package packagemascotas;
+package packagecitas;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import metodos.Metodos;
 
 /**
  *
@@ -67,6 +68,12 @@ public class ConsultarCts extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/packageclientes/consulta.png"))); // NOI18N
         jLabel1.setText("Consultar Citas");
+
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyReleased(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel2.setText("Digita la Cedula del Cliente ");
@@ -203,6 +210,17 @@ public class ConsultarCts extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnbuscarActionPerformed
 
+    private void txtCedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyReleased
+        buscarCita(txtCedula.getText());
+    }//GEN-LAST:event_txtCedulaKeyReleased
+    
+    public void buscarCita(String buscar){
+        Metodos metodo = new Metodos();
+        
+        DefaultTableModel modelo = metodo.buscarCitas(buscar);        
+        tblusuarios2.setModel(modelo);
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbuscar;

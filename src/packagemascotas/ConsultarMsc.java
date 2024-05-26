@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import metodos.Metodos;
 
 /**
  *
@@ -148,7 +149,7 @@ public class ConsultarMsc extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
- String archivoCSV = "C:\\Users\\nadir\\OneDrive\\Documents\\NetBeansProjects\\ProyectoAula\\clientes.csv"; // Cambia esto al nombre de tu archivo CSV
+ String archivoCSV = "clientes.csv"; // Cambia esto al nombre de tu archivo CSV
  int entrada=1;
  modelo.setRowCount(0);
  if(entrada==1){
@@ -207,6 +208,13 @@ public class ConsultarMsc extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public void buscarMascota(String buscar){
+        Metodos metodo = new Metodos();
+        
+        DefaultTableModel modelo = metodo.buscarMascotas(buscar);
+        tblusuarios2.setModel(modelo);
+    }
+    
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
           char c = evt.getKeyChar();
         if (c < '0' || c > '9')
@@ -214,7 +222,7 @@ public class ConsultarMsc extends javax.swing.JPanel {
     }//GEN-LAST:event_txtCedulaKeyTyped
 
     private void txtCedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyReleased
-        // TODO add your handling code here:
+        buscarMascota(txtCedula.getText());
     }//GEN-LAST:event_txtCedulaKeyReleased
 
 

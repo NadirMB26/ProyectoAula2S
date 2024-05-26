@@ -190,10 +190,39 @@ public class RegistrarMsc extends javax.swing.JPanel {
         mascota.Tsangre = etiTsangre1.getText().trim();
         mascota.especie = txtEspecie.getText().trim();
         mascota.Tvida = txtedadm.getText().trim();
-  
+  int validacion=0;
     
-        String archivoCSV = "C:\\Users\\nadir\\OneDrive\\Documents\\NetBeansProjects\\ProyectoAula\\clientes.csv"; // Cambia esto al nombre de tu archivo CSV
-        String variableAComprobar = mascota.Ndocument; // Cambia esto al valor que deseas comprobar
+          if (txtNumeroDocumento.getText().equals("")) {
+            validacion++;
+        }
+        if (etiNombreMasc.getText().equals("")) {
+           validacion++;
+        }
+
+        if (etiColor.getText().equals("")) {
+           validacion++;
+        }
+
+        if (etiTsangre1.getText().equals("")) {
+            validacion++;
+        }
+
+        if (txtEspecie.getText().equals("")) {
+           validacion++;
+        }
+
+        if (txtedadm.getText().equals("")) {
+            validacion++;
+        }
+
+        if (validacion != 0) {
+            JOptionPane.showMessageDialog(null, "Se deben completar todos los campos");
+            
+        
+        }else{
+    
+        String archivoCSV = "clientes.csv"; // Cambia esto al nombre de tu archivo CSV
+        String variableAComprobar = mascota.Ndocument; 
 
         boolean existe = false;
 
@@ -233,6 +262,7 @@ public class RegistrarMsc extends javax.swing.JPanel {
     
             JOptionPane.showMessageDialog(this,"Cliente no registrado");
 
+        }
         }
 
     }//GEN-LAST:event_btnGuardarMasctActionPerformed
